@@ -86,18 +86,16 @@ function userActionResetMultipleSheetsByColor() {
   sheetNames.forEach(function(sn) {
     var sheet = SpreadsheetApp.getActive().getSheetByName(sn.name);
     if (sheet) {
-      var rangesAddressesList = sheet
+      var rangesAddressesList = [];
+      sheet
         .getDataRange()
         .getFontColors()
-        .reduce(function(p, row, i) {
-          var colors = row.reduce(function(p2, color, j) {
+        .forEach(function(row, i) {
+          row.forEach(function(color, j) {
             if (color === fColor)
-              p2.push(Utilities.formatString('R%sC%s', i + 1, j + 1));
-            return p2;
-          }, []);
-          if (colors.length) p = p.concat(colors);
-          return p;
-        }, []);
+              rangesAddressesList.push(Utilities.formatString('R%sC%s', i + 1, j + 1));
+          });
+        });
       if (rangesAddressesList.length)
         resetByRangesList_(sheet, rangesAddressesList);
     }
@@ -112,16 +110,16 @@ function userActionResetMultipleSheetsBySpecialColumns() {
     .getSheets()
     .forEach(function(sheet) {
       var lastRow = sheet.getLastRow();
-      var rangesAddressesList = sheet
+      var rangesAddressesList = [];
+      sheet
         .getRange('2:2')
         .getValues()[0]
-        .reduce(function(p, cell, i) {
+        .forEach(function(cell, i) {
           if (cell === 'GSA')
-            p.push(
+            rangesAddressesList.push(
               Utilities.formatString('R3C%s:R%sC%s', i + 1, lastRow, i + 1)
             );
-          return p;
-        }, []);
+        });
       if (rangesAddressesList.length) {
         sheet.activate(); // Please remove this
         resetByRangesList_(sheet, rangesAddressesList);
