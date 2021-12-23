@@ -8,9 +8,19 @@
  */
 function run() {
   const sheet = SpreadsheetApp.getActiveSheet();
-  const base = sheet.getRange('C3:C');
+  const base = sheet.getRange('I3:I');
   const colFormula = sheet.getRange('J3');
   draggDownFormulas_(base, colFormula);
+}
+
+function runBulk() {
+  const formulasCells = ['J3', 'K3', 'M3'];
+  const sheet = SpreadsheetApp.getActiveSheet();
+  const base = sheet.getRange('I3:I');
+  formulasCells.forEach((cell) => {
+    const colFormula = sheet.getRange(cell);
+    draggDownFormulas_(base, colFormula);
+  });
 }
 
 /**
@@ -30,7 +40,7 @@ function run2() {
 function draggDownFormulas_(base, colFormula) {
   const baseValues = base.getValues();
   const lastBase =
-    baseValues.length - baseValues.reverse().findIndex(row => row[0] !== '');
+    baseValues.length - baseValues.reverse().findIndex((row) => row[0] !== '');
   const colFormulaFormula = colFormula.getFormula();
   colFormula
     .getSheet()
@@ -50,7 +60,7 @@ function draggDownFormulas_(base, colFormula) {
 function draggDownOneFormula_(base, colFormula) {
   const baseValues = base.getValues();
   const lastBase =
-    baseValues.length - baseValues.reverse().findIndex(row => row[0] !== '');
+    baseValues.length - baseValues.reverse().findIndex((row) => row[0] !== '');
   const colFormulaFormula = colFormula.getFormula();
   colFormula
     .getSheet()
