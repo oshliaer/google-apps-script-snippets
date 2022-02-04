@@ -34,10 +34,7 @@ function run() {
  * @param {string} id The Doc id
  * @return {GoogleAppsScript.Docs.Schema.BatchUpdateDocumentResponse}
  */
-function replaceAllText(
-  replacements,
-  id = DocumentApp.getActiveDocument().getId()
-) {
+function replaceAllText(replacements, id = DocumentApp.getActiveDocument().getId()) {
   const requests = replacements.map((replacement) => {
     const substringMatchCriteria = Docs.newSubstringMatchCriteria();
     substringMatchCriteria.matchCase = false;
@@ -56,10 +53,7 @@ function replaceAllText(
   const batchUpdateDocumentRequest = Docs.newBatchUpdateDocumentRequest();
   batchUpdateDocumentRequest.requests = requests;
 
-  const batchUpdateDocumentResponse = Docs.Documents.batchUpdate(
-    batchUpdateDocumentRequest,
-    id
-  );
+  const batchUpdateDocumentResponse = Docs.Documents.batchUpdate(batchUpdateDocumentRequest, id);
 
   return batchUpdateDocumentResponse;
 }

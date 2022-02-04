@@ -3,9 +3,7 @@
  *
  */
 function getData() {
-  const values = SpreadsheetApp.getActiveSheet()
-    .getDataRange()
-    .getValues();
+  const values = SpreadsheetApp.getActiveSheet().getDataRange().getValues();
   const headers = values.shift();
   const data = values.reduce((p, c) => {
     const entry = c.reduce((o, v, j) => {

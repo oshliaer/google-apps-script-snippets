@@ -13,12 +13,7 @@ function toTime(date, withoutTime) {
 function compareDates() {
   var sheetDate = SpreadsheetApp.getActiveRange().getValue();
   var currentDate = new Date();
-  Logger.log(
-    '%s < %s: %s',
-    toTime(sheetDate),
-    toTime(currentDate),
-    toTime(sheetDate) < toTime(currentDate)
-  );
+  Logger.log('%s < %s: %s', toTime(sheetDate), toTime(currentDate), toTime(sheetDate) < toTime(currentDate));
   Logger.log(
     '%s === %s: %s',
     toTime(sheetDate, true),

@@ -1,7 +1,6 @@
 {
   "timeZone": "Europe/Moscow",
-  "dependencies": {
-  },
+  "dependencies": {},
   "webapp": {
     "access": "MYSELF",
     "executeAs": "USER_DEPLOYING"

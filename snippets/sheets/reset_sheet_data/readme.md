@@ -43,7 +43,6 @@ You have to decide how you want to reset your sheet. This is expressed in indivi
     Sorry, your browser doesn't support embedded videos.
 </video>
 
-
 {{< codeFromFile "makeCopyBeforeReset.js" >}}
 
 {{< clipboard >}}

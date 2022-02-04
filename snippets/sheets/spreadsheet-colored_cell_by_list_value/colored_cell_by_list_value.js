@@ -10,13 +10,11 @@
  *
  * @param {GoogleAppsScript.Events.SheetsOnEdit} e
  */
-const onEdit = e => {
+const onEdit = (e) => {
   const sheet = e.range.getSheet();
   const value = e.range.getValue();
   if (sheet.getName() == 'Sheet1' && e.range.getA1Notation() === 'C2') {
     const range = sheet.getRange(2, 1, sheet.getLastRow() - 1, 1);
-    range.setBackgrounds(
-      range.getValues().map(row => [row[0] === value ? '#7986CB' : ''])
-    );
+    range.setBackgrounds(range.getValues().map((row) => [row[0] === value ? '#7986CB' : '']));
   }
 };

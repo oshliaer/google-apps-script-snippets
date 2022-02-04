@@ -17,12 +17,10 @@ function run() {
  */
 function setСenterAlignmentForAllTables_(doc) {
   var style = {};
-  style[DocumentApp.Attribute.HORIZONTAL_ALIGNMENT] =
-    DocumentApp.HorizontalAlignment.CENTER;
-  style[DocumentApp.Attribute.VERTICAL_ALIGNMENT] =
-    DocumentApp.VerticalAlignment.CENTER;
+  style[DocumentApp.Attribute.HORIZONTAL_ALIGNMENT] = DocumentApp.HorizontalAlignment.CENTER;
+  style[DocumentApp.Attribute.VERTICAL_ALIGNMENT] = DocumentApp.VerticalAlignment.CENTER;
   var tables = doc.getBody().getTables();
-  tables.forEach(function(table) {
+  tables.forEach(function (table) {
     var numRows = table.getNumRows();
     var indexRow = 0;
     while (indexRow < numRows) {
@@ -45,26 +43,17 @@ function setСenterAlignmentForAllTables_(doc) {
  */
 function setСenterAlignmentForAllTables2_(doc) {
   var style = {};
-  style[DocumentApp.Attribute.HORIZONTAL_ALIGNMENT] =
-    DocumentApp.HorizontalAlignment.CENTER;
-  style[DocumentApp.Attribute.VERTICAL_ALIGNMENT] =
-    DocumentApp.VerticalAlignment.CENTER;
+  style[DocumentApp.Attribute.HORIZONTAL_ALIGNMENT] = DocumentApp.HorizontalAlignment.CENTER;
+  style[DocumentApp.Attribute.VERTICAL_ALIGNMENT] = DocumentApp.VerticalAlignment.CENTER;
   var body = doc.getBody();
   for (var i = 0; i < body.getNumChildren(); i++) {
     if (body.getChild(i).getType() == 'TABLE') {
       var table = body.getChild(i).asTable();
       var rows = table.getNumRows();
-      var cols = table
-        .getChild(0)
-        .asTableRow()
-        .getNumChildren();
+      var cols = table.getChild(0).asTableRow().getNumChildren();
       for (var j = 0; j < rows; j++) {
         for (var k = 0; k < cols; k++) {
-          body
-            .getChild(i)
-            .asTable()
-            .getCell(j, k)
-            .setAttributes(style);
+          body.getChild(i).asTable().getCell(j, k).setAttributes(style);
         }
       }
     }

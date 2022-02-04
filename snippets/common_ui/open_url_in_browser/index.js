@@ -18,9 +18,7 @@ function onOpen() {
  * User action
  */
 function userActionOpenMyFile() {
-  const file = DriveApp.getFileById(
-    '17mpcNilHA43kWqYm8qHAwiwAqFJ1DQ9QENBXHa6CoDM'
-  );
+  const file = DriveApp.getFileById('17mpcNilHA43kWqYm8qHAwiwAqFJ1DQ9QENBXHa6CoDM');
   openUrlInBrowser_(file.getUrl());
 }
 

@@ -12,7 +12,5 @@
  */
 function doPost(e) {
   // const payments = JSON.parse(e.parameter.payments);
-  return ContentService.createTextOutput(
-    JSON.stringify(form2Json(e.postData.contents), null, '  ')
-  );
+  return ContentService.createTextOutput(JSON.stringify(form2Json(e.postData.contents), null, '  '));
 }

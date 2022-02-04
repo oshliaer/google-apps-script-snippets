@@ -1,7 +1,7 @@
 <script>
   let globalScope = {};
-  document.addEventListener('DOMContentLoaded', _ => {
-    google.script.url.getLocation(function(location) {
+  document.addEventListener('DOMContentLoaded', (_) => {
+    google.script.url.getLocation(function (location) {
       console.log('location', location);
       globalScope.item = location.parameter.item;
     });

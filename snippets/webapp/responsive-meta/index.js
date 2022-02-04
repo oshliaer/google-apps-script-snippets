@@ -4,8 +4,5 @@
  */
 function doGet() {
   const htmlContent = 'Hello world!';
-  return HtmlService.createHtmlOutput(htmlContent).addMetaTag(
-    'viewport',
-    'width=device-width, initial-scale=1'
-  );
+  return HtmlService.createHtmlOutput(htmlContent).addMetaTag('viewport', 'width=device-width, initial-scale=1');
 }

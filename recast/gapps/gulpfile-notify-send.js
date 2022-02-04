@@ -11,4 +11,4 @@ gulp.task('default', function (cb) {
     console.log(stderr);
     cb(err);
   });
-})
+});

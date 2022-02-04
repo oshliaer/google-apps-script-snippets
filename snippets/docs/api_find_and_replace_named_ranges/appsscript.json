@@ -1,11 +1,13 @@
 {
   "timeZone": "Europe/Moscow",
   "dependencies": {
-    "enabledAdvancedServices": [{
-      "userSymbol": "Docs",
-      "serviceId": "docs",
-      "version": "v1"
-    }]
+    "enabledAdvancedServices": [
+      {
+        "userSymbol": "Docs",
+        "serviceId": "docs",
+        "version": "v1"
+      }
+    ]
   },
   "exceptionLogging": "STACKDRIVER",
   "runtimeVersion": "V8"

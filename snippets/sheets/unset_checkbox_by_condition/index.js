@@ -17,12 +17,8 @@ function onEdit(e) {
       SpreadsheetApp.flush();
       const sheet = e.range.getSheet();
       const range = sheet.getDataRange();
-      const newValues = range
-        .getValues()
-        .map(row => [row[1] === 'Койка без О2' ? false : row[2]]);
-      sheet
-        .getRange(1, 3, newValues.length, newValues[0].length)
-        .setValues(newValues);
+      const newValues = range.getValues().map((row) => [row[1] === 'Койка без О2' ? false : row[2]]);
+      sheet.getRange(1, 3, newValues.length, newValues[0].length).setValues(newValues);
       lock.releaseLock();
       e.source.toast('done', 0);
     } else {

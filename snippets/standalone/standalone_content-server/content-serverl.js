@@ -33,12 +33,10 @@ function search(e) {
   var values = sheet
     .getDataRange()
     .getValues()
-    .filter(function(row) {
+    .filter(function (row) {
       return row[0] === id;
     });
 
   var content = JSON.stringify(values);
-  return ContentService.createTextOutput(content).setMimeType(
-    ContentService.MimeType.TEXT
-  );
+  return ContentService.createTextOutput(content).setMimeType(ContentService.MimeType.TEXT);
 }

@@ -5,7 +5,7 @@
  */
 function onChange1(e) {
   const bookId = ScriptApp.getProjectTriggers()
-    .find(function(trigger) {
+    .find(function (trigger) {
       return trigger.getUniqueId() === e.triggerUid;
     })[0]
     .getTriggerSourceId();

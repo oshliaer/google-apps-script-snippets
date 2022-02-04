@@ -12,9 +12,7 @@ const ms = require('merge-stream');
 
 const packageJson = require('./package.json');
 
-const watchDelay =
-  (packageJson.devSettings ? packageJson.devSettings.watchDelay : undefined) ||
-  1000;
+const watchDelay = (packageJson.devSettings ? packageJson.devSettings.watchDelay : undefined) || 1000;
 
 gulp.task('br', function (done) {
   // console.log('asdfsdf', path.normalize(`${process.cwd()}/`));
@@ -26,12 +24,7 @@ gulp.task('br', function (done) {
   const config = JSON.parse(fs.readFileSync(path.join(snippet, 'config.json')));
   console.log(snippet);
   del.sync('./dist/');
-  let src = [
-    `${snippet}**/*.js`,
-    `${snippet}**/*.ts`,
-    `${snippet}**/*.html`,
-    `${snippet}appsscript.json`,
-  ];
+  let src = [`${snippet}**/*.js`, `${snippet}**/*.ts`, `${snippet}**/*.html`, `${snippet}appsscript.json`];
   let claspConfig = '';
   if (!config.type) throw new Error('USER CONFIG ERROR: type requeried');
   if (config.type === 'single') claspConfig = `${snippet}.clasp.json`;
@@ -71,9 +64,7 @@ gulp.task('copy-sheet', function () {
     .src('./templates/sheet_snippet/**/*.*', {
       base: './templates/sheet_snippet',
     })
-    .pipe(
-      gulp.dest(`./snippets/sheets/_auto_${arg.name || new Date().getTime()}`)
-    );
+    .pipe(gulp.dest(`./snippets/sheets/_auto_${arg.name || new Date().getTime()}`));
 });
 
 gulp.task(

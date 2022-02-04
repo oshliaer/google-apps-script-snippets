@@ -13,12 +13,8 @@ function runStop() {
   const instances = JSON.parse(Instances.list(request).getContentText());
   const res = {};
   if (instances && instances.items)
-    res.stops = instances.items.map(item =>
-      JSON.parse(
-        Instances.stop(
-          Object.assign(DEFAULT_PROJECT, { resourceId: item.id })
-        ).getContentText()
-      )
+    res.stops = instances.items.map((item) =>
+      JSON.parse(Instances.stop(Object.assign(DEFAULT_PROJECT, { resourceId: item.id })).getContentText())
     );
   else res.other = instances;
   console.log(res);
@@ -32,12 +28,8 @@ function runStart() {
   const instances = JSON.parse(Instances.list(reques).getContentText());
   const res = {};
   if (instances && instances.items)
-    res.starts = instances.items.map(item =>
-      JSON.parse(
-        Instances.start(
-          Object.assign(DEFAULT_PROJECT, { resourceId: item.id })
-        ).getContentText()
-      )
+    res.starts = instances.items.map((item) =>
+      JSON.parse(Instances.start(Object.assign(DEFAULT_PROJECT, { resourceId: item.id })).getContentText())
     );
   else res.other = instances;
   console.log(res);

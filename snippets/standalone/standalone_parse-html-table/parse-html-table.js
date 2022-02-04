@@ -44,20 +44,14 @@ function parseHtmlTableToArray_(content) {
   var inline = content.replace(/[\n\r]/g, ' ');
   var table = inline.split(/<table.*?>/)[1].split(/<\/table>/)[0];
 
-  return table.split(/<tr.*?>/).map(function(row) {
+  return table.split(/<tr.*?>/).map(function (row) {
     return (
       row
         .split(/(<td.*?>|<th.*?>)/)
         .slice(2)
-        .reduce(function(p, cell, i) {
+        .reduce(function (p, cell, i) {
           if (~i % 2) {
-            p.push(
-              cell
-                .replace(/<.*?>/g, ' ')
-                .replace(/\s+/g, ' ')
-                .replace(/^\s+/g, '')
-                .replace(/\s+$/g, '')
-            );
+            p.push(cell.replace(/<.*?>/g, ' ').replace(/\s+/g, ' ').replace(/^\s+/g, '').replace(/\s+$/g, ''));
           }
           return p;
         }, [])

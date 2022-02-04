@@ -22,8 +22,7 @@ function onOpen() {
 function onEdit(e) {
   if (
     e.range.getSheet().getName() === 'Sheet1' &&
-    ((e.range.getColumn() === 2 && e.range.getRow() > 3) ||
-      e.range.getA1Notation() === 'F6')
+    ((e.range.getColumn() === 2 && e.range.getRow() > 3) || e.range.getA1Notation() === 'F6')
   ) {
     SpreadsheetApp.getActive().toast('Start ...');
     fillData_(e.range.getSheet());
@@ -61,17 +60,11 @@ function fillData_(sheet) {
   const range = sheet.getRange('B3:C');
   const values = range.getValues();
 
-  const totalData = values
-    .map((_, i) => i)
-    .filter((_, i) => values[i][0] !== '');
+  const totalData = values.map((_, i) => i).filter((_, i) => values[i][0] !== '');
 
-  const sortIndexes = totalData
-    .sort(() => 0.5 - Math.random())
-    .slice(0, parseInt(totalData.length * percent));
+  const sortIndexes = totalData.sort(() => 0.5 - Math.random()).slice(0, parseInt(totalData.length * percent));
 
-  const newValues = values.map((_, i) => [
-    sortIndexes.indexOf(i) !== -1 ? true : '',
-  ]);
+  const newValues = values.map((_, i) => [sortIndexes.indexOf(i) !== -1 ? true : '']);
 
   sheet.getRange('C3:C').setValues(newValues);
 }
@@ -84,11 +77,9 @@ function extractData_(sheet) {
   const range = sheet.getRange('A3:C');
   const values = range.getValues();
 
-  const totalData = values.filter(row => row[0] !== '');
+  const totalData = values.filter((row) => row[0] !== '');
 
-  const sortIndexes = totalData
-    .sort(() => 0.5 - Math.random())
-    .slice(0, parseInt(totalData.length * percent));
+  const sortIndexes = totalData.sort(() => 0.5 - Math.random()).slice(0, parseInt(totalData.length * percent));
 
   sheet
     .getRange('L3:N')

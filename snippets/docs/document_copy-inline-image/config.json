@@ -1,7 +1,4 @@
 {
   "type": "standalone",
-  "src": [
-    "./shims/Array.find.js",
-    "./shims/Array.findIndex.js"
-  ]
+  "src": ["./shims/Array.find.js", "./shims/Array.findIndex.js"]
 }

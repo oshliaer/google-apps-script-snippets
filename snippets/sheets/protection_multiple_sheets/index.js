@@ -19,9 +19,7 @@ const UNPROTECTED_ADDRS = ['A1:C9'];
  */
 function userActionRunSnippet() {
   const book = SpreadsheetApp.getActive();
-  const sheets = book
-    .getSheets()
-    .filter((sheet) => SHEET_LIST.includes(sheet.getName()));
+  const sheets = book.getSheets().filter((sheet) => SHEET_LIST.includes(sheet.getName()));
 
   sheets.forEach((sheet) => {
     const unprotected = UNPROTECTED_ADDRS.map((addr) => sheet.getRange(addr));

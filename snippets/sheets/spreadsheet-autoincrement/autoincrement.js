@@ -12,19 +12,19 @@ function autoincrement_(sheet) {
   if (data.length < 2) return;
   var indexCol = data[0].indexOf('autoincrement');
   if (indexCol < 0) return;
-  var increment = data.map(function(row) {
+  var increment = data.map(function (row) {
     return row[indexCol];
   });
   var lastIncrement = Math.max.apply(
     null,
-    increment.filter(function(e) {
+    increment.filter(function (e) {
       return isNumeric_(e);
     })
   );
 
   lastIncrement = isNumeric_(lastIncrement) ? lastIncrement : 0;
   var newIncrement = data
-    .map(function(row) {
+    .map(function (row) {
       if (row[indexCol] !== '') return [row[indexCol]];
       if (row.join('').length > 0) return [++lastIncrement];
       return [''];
@@ -78,10 +78,7 @@ function userActionUpdateIncrement() {
  *
  */
 function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu('AUTOINCREMENT')
-    .addItem('Update', 'userActionUpdateIncrement')
-    .addToUi();
+  SpreadsheetApp.getUi().createMenu('AUTOINCREMENT').addItem('Update', 'userActionUpdateIncrement').addToUi();
 }
 
 /**

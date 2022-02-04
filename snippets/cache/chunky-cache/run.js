@@ -5,9 +5,7 @@
  * Runs the snippet. Caches a 200KB string.
  */
 function run() {
-  const value = DriveApp.getFileById('19WGODj4pQ-VgwI2unZfQCxX25D4xaB4Q')
-    .getBlob()
-    .getDataAsString();
+  const value = DriveApp.getFileById('19WGODj4pQ-VgwI2unZfQCxX25D4xaB4Q').getBlob().getDataAsString();
   new ChunkyCache().put('key', value);
 
   const cacheValue = new ChunkyCache().get('key');
@@ -20,9 +18,7 @@ function run() {
  * Then creates a copy of this from the cache
  */
 function runCacheImage() {
-  const data = DriveApp.getFileById(
-    '14Sm76a_dJI4eKtSbfCfDq4gVjcUzREE7'
-  ).getBlob();
+  const data = DriveApp.getFileById('14Sm76a_dJI4eKtSbfCfDq4gVjcUzREE7').getBlob();
   new BlobCache().putBlob('myfile1', data);
 
   DriveApp.createFile(new BlobCache().getBlob('myfile1'));
@@ -34,9 +30,9 @@ function runCacheImage() {
  * Compares the original data and the cache data
  */
 function runTest() {
-  const sheet = SpreadsheetApp.openById(
-    '19TlsK5ICOuzrv07OSw5n3KtYbTHn00p1iFY6QArBWTM'
-  ).getSheetByName('aka FuzzyMatch');
+  const sheet = SpreadsheetApp.openById('19TlsK5ICOuzrv07OSw5n3KtYbTHn00p1iFY6QArBWTM').getSheetByName(
+    'aka FuzzyMatch'
+  );
   const data = sheet.getDataRange().getValues();
   const chunky = new ChunkyCache(CacheService.getUserCache());
   chunky.put('Data', data);

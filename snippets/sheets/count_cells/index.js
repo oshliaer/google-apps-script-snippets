@@ -39,18 +39,9 @@ function getCountCells2_(array, filterCallback) {
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('My tools')
-    .addItem(
-      'Get count empty cells of active range',
-      'userActionGetCountEmptyCells'
-    )
-    .addItem(
-      'Get count non-empty cells of B:B range',
-      'userActionGetCountNonEmptyCells'
-    )
-    .addItem(
-      'Get count white cells of active range',
-      'userActionGetCountWhiteCells'
-    )
+    .addItem('Get count empty cells of active range', 'userActionGetCountEmptyCells')
+    .addItem('Get count non-empty cells of B:B range', 'userActionGetCountNonEmptyCells')
+    .addItem('Get count white cells of active range', 'userActionGetCountWhiteCells')
     .addToUi();
 }
 /**
@@ -60,20 +51,16 @@ function userActionGetCountEmptyCells() {
   /** @type {ReduceCallback} */
   const reduceCallback = (acc, cv) => {
     const length = cv.length;
-    const count = cv.filter(cell => cell === '').length;
+    const count = cv.filter((cell) => cell === '').length;
     acc.count += count;
     acc.total += length;
     return acc;
   };
-  const countCells = getCountCells_(
-    SpreadsheetApp.getActiveRange().getValues(),
-    reduceCallback
-  );
+  const countCells = getCountCells_(SpreadsheetApp.getActiveRange().getValues(), reduceCallback);
   const ui = SpreadsheetApp.getUi();
   ui.alert(
     'Count cells',
-    `Empty: ${countCells.count}. With values: ${countCells.total -
-      countCells.count}. Total: ${countCells.total}`,
+    `Empty: ${countCells.count}. With values: ${countCells.total - countCells.count}. Total: ${countCells.total}`,
     ui.ButtonSet.OK
   );
 }
@@ -83,17 +70,10 @@ function userActionGetCountEmptyCells() {
  */
 function userActionGetCountWhiteCells() {
   /** @type {ReduceCallback} */
-  const filterCallback = cell => cell === '#ffffff';
-  const countCells = getCountCells2_(
-    SpreadsheetApp.getActiveRange().getBackgrounds(),
-    filterCallback
-  );
+  const filterCallback = (cell) => cell === '#ffffff';
+  const countCells = getCountCells2_(SpreadsheetApp.getActiveRange().getBackgrounds(), filterCallback);
   const ui = SpreadsheetApp.getUi();
-  ui.alert(
-    'Count cells',
-    `White: ${countCells.count}. Total: ${countCells.total}`,
-    ui.ButtonSet.OK
-  );
+  ui.alert('Count cells', `White: ${countCells.count}. Total: ${countCells.total}`, ui.ButtonSet.OK);
 }
 
 /**
@@ -101,18 +81,11 @@ function userActionGetCountWhiteCells() {
  */
 function userActionGetCountNonEmptyCells() {
   /** @type {ReduceCallback} */
-  const filterCallback = cell => cell !== '';
+  const filterCallback = (cell) => cell !== '';
   const sheet = SpreadsheetApp.getActive().getSheetByName('Sheet1');
-  const countCells = getCountCells2_(
-    sheet.getRange(`B1:B${sheet.getLastRow()}`).getValues(),
-    filterCallback
-  );
+  const countCells = getCountCells2_(sheet.getRange(`B1:B${sheet.getLastRow()}`).getValues(), filterCallback);
   const ui = SpreadsheetApp.getUi();
-  ui.alert(
-    'Count cells',
-    `Non-empty: ${countCells.count}. Total: ${countCells.total}`,
-    ui.ButtonSet.OK
-  );
+  ui.alert('Count cells', `Non-empty: ${countCells.count}. Total: ${countCells.total}`, ui.ButtonSet.OK);
 }
 
 /**

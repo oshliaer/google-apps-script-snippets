@@ -20,27 +20,19 @@ function form2Json(formString) {
   let j;
   let ev;
   if (typeof form2Json.br !== 'function') {
-    form2Json.br = function(repl) {
+    form2Json.br = function (repl) {
       if (repl.indexOf(']') !== -1) {
-        return repl.replace(/\](.+?)(,|$)/g, function($1, $2, $3) {
+        return repl.replace(/\](.+?)(,|$)/g, function ($1, $2, $3) {
           return form2Json.br($2 + '}' + $3);
         });
       }
       return repl;
     };
   }
-  formString =
-    '{"' +
-    (formString.indexOf('%') !== -1
-      ? decodeURIComponent(formString)
-      : formString) +
-    '"}';
-  obj = formString
-    .replace(/\=/g, '":"')
-    .replace(/&/g, '","')
-    .replace(/\[/g, '":{"');
+  formString = '{"' + (formString.indexOf('%') !== -1 ? decodeURIComponent(formString) : formString) + '"}';
+  obj = formString.replace(/\=/g, '":"').replace(/&/g, '","').replace(/\[/g, '":{"');
   obj = JSON.parse(
-    obj.replace(/\](.+?)(,|$)/g, function($1, $2, $3) {
+    obj.replace(/\](.+?)(,|$)/g, function ($1, $2, $3) {
       return form2Json.br($2 + '}' + $3);
     })
   );

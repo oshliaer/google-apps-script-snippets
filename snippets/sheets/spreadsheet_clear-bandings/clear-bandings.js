@@ -16,8 +16,8 @@ function run() {
  * @param {GoogleAppsScript.Spreadsheet.Spreadsheet} spreadsheet
  */
 function clearBandings_(spreadsheet) {
-  spreadsheet.getSheets().forEach(function(sheet) {
-    sheet.getBandings().forEach(function(banding) {
+  spreadsheet.getSheets().forEach(function (sheet) {
+    sheet.getBandings().forEach(function (banding) {
       banding.remove();
     });
   });

@@ -18,11 +18,7 @@ function copyValuesBetweenTwoSheets_(from, to) {
  * Example
  */
 function example1() {
-  var from = SpreadsheetApp.openById(
-    '1fAEqgLX2S94qbGEP0cNSOhMb8VLn9Izz59vMbT7VQJU'
-  ).getSheetByName('MOCK_DATA');
-  var to = SpreadsheetApp.openById(
-    '1m6XiqqNOvn3kYjU_K6CNqZZ-TkrIyOJhEdJov2VhgiU'
-  ).getSheetByName('MOCK_DATA');
+  var from = SpreadsheetApp.openById('1fAEqgLX2S94qbGEP0cNSOhMb8VLn9Izz59vMbT7VQJU').getSheetByName('MOCK_DATA');
+  var to = SpreadsheetApp.openById('1m6XiqqNOvn3kYjU_K6CNqZZ-TkrIyOJhEdJov2VhgiU').getSheetByName('MOCK_DATA');
   copyValuesBetweenTwoSheets_(from, to);
 }

@@ -22,20 +22,19 @@ function renameToCurrentYear_(year) {
         month: 'short',
       })
     )
-    .map(name => new RegExp(`(${name}) (\\d{2})`));
+    .map((name) => new RegExp(`(${name}) (\\d{2})`));
   SpreadsheetApp.getActive()
     .getSheets()
-    .forEach(sheet => {
+    .forEach((sheet) => {
       const name = sheet.getName();
       let match = undefined;
-      const patt = listOfNamesPatts.find(patt => {
+      const patt = listOfNamesPatts.find((patt) => {
         const match_ = name.match(patt);
         if (match_) {
           match = match_;
           return true;
         }
       });
-      if (match && match[2] !== year)
-        sheet.setName(name.replace(match[0], `${match[1]} ${year}`));
+      if (match && match[2] !== year) sheet.setName(name.replace(match[0], `${match[1]} ${year}`));
     });
 }

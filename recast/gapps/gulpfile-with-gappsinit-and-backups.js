@@ -16,42 +16,35 @@ gulp.task('default', ['src'], function (cb) {
 });
 
 gulp.task('clean', function () {
-  del([
-    'src/*'
-  ]);
+  del(['src/*']);
 });
 
 gulp.task('src', ['clean'], function () {
-  gulp.src(['*.html', '*.gs', '*.js', '!gulpfile.js'])
-    .pipe(gulp.dest('src'));
-  gulp.src('node_modules/alasql/dist/alasql.js')
-    .pipe(removeEmptyLines({
-      removeComments: true
-    }))
+  gulp.src(['*.html', '*.gs', '*.js', '!gulpfile.js']).pipe(gulp.dest('src'));
+  gulp
+    .src('node_modules/alasql/dist/alasql.js')
+    .pipe(
+      removeEmptyLines({
+        removeComments: true,
+      })
+    )
     .pipe(strip())
     .pipe(rename('z_alasql.gs'))
     .pipe(gulp.dest('src'));
 });
 
 gulp.task('init', ['gappsexec'], function () {
-  gulp.src(['src/*.html', 'src/*.gs', 'src/*.js'])
-    .pipe(gulp.dest('.'));
+  gulp.src(['src/*.html', 'src/*.gs', 'src/*.js']).pipe(gulp.dest('.'));
 });
-
 
 gulp.task('cleanbup', function () {
-  del([
-    '.backups'
-  ]);
+  del(['.backups']);
 });
-
 
 gulp.task('gs', function (cb) {
   var path = `.backups/${new Date().getTime()}`;
 
-  return gulp.src(['src/**/*', './gapps.config.json'], { base: '.' })
-    .pipe(vp(del))
-    .pipe(gulp.dest(path));
+  return gulp.src(['src/**/*', './gapps.config.json'], { base: '.' }).pipe(vp(del)).pipe(gulp.dest(path));
 });
 
 gulp.task('gappsexec', ['gs'], function (cb) {
@@ -59,5 +52,5 @@ gulp.task('gappsexec', ['gs'], function (cb) {
     console.log(stdout);
     console.log(stderr);
     cb(err);
-  })
+  });
 });

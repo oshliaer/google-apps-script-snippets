@@ -9,9 +9,7 @@ class ImportxmlScrapper {
   constructor(book) {
     this.book = book;
     this.data = this.book.getSheetByName('Data');
-    this.inproc = this.book
-      .getSheets()
-      .find((sheet) => /\[inproc\]/i.test(sheet.getName()));
+    this.inproc = this.book.getSheets().find((sheet) => /\[inproc\]/i.test(sheet.getName()));
   }
   /**
    *
@@ -30,18 +28,13 @@ class ImportxmlScrapper {
    */
   scrape({ counter = 50 }) {
     let _counter_ = counter;
-    const current = this.book
-      .getSheets()
-      .find((sheet) => /\[inproc\]/i.test(sheet.getName()));
+    const current = this.book.getSheets().find((sheet) => /\[inproc\]/i.test(sheet.getName()));
 
     if (!current) return undefined;
 
-    const substFinder = current
-      .createTextFinder('^_=')
-      .useRegularExpression(true);
+    const substFinder = current.createTextFinder('^_=').useRegularExpression(true);
     if (substFinder.findAll().length) {
-      while (substFinder.findNext() && --_counter_)
-        substFinder.replaceWith('=');
+      while (substFinder.findNext() && --_counter_) substFinder.replaceWith('=');
       SpreadsheetApp.flush();
       const dr = current.getDataRange();
       dr.setValues(dr.getValues());

@@ -15,12 +15,7 @@ function onedit(e) {
   var currentRange = e.range;
   var currentSheet = currentRange.getSheet();
   var currentRow = currentRange.getRow();
-  if (
-    e.value &&
-    currentSheet.getName() == 'Sheet 1' &&
-    currentRow > 1 &&
-    currentRange.getColumn() == 1
-  ) {
+  if (e.value && currentSheet.getName() == 'Sheet 1' && currentRow > 1 && currentRange.getColumn() == 1) {
     var dataRange = currentSheet.getRange(currentRow + ':' + currentRow);
     var destinationSheet = currentSheet.getParent().getSheetByName('Sheet 2');
     var destinationRow = destinationSheet.getLastRow() + 1;

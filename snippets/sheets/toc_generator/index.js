@@ -19,15 +19,7 @@ function tocBuilder_(book = SpreadsheetApp.getActive()) {
       name: sheet.getName(),
       gid: sheet.getSheetId(),
     }))
-    .map(
-      (item) => (
-        (item.richTextValueBuilder = createRichTextValueLink_(
-          item.name,
-          `#gid=${item.gid}`
-        )),
-        item
-      )
-    );
+    .map((item) => ((item.richTextValueBuilder = createRichTextValueLink_(item.name, `#gid=${item.gid}`)), item));
 }
 
 /**
@@ -40,9 +32,7 @@ function tocUpdater_(tocBuild, range) {
   range
     .getSheet()
     .getRange(range.getRow(), range.getColumn(), tocBuild.length, 1)
-    .setRichTextValues(
-      tocBuild.map((item) => [item.richTextValueBuilder.build()])
-    );
+    .setRichTextValues(tocBuild.map((item) => [item.richTextValueBuilder.build()]));
 }
 
 /**

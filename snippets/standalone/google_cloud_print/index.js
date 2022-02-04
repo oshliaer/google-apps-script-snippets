@@ -17,14 +17,8 @@ function logPrinters() {
  */
 function printFile() {
   const printerid = '__google__docs';
-  const content = DriveApp.getFileById(
-    '13czHxp49MFMoV2in32LkoflLupI1pucidj4ceBpKZos'
-  ).getBlob();
-  const title = Utilities.formatString(
-    '%s %s',
-    printerid,
-    new Date().getTime()
-  );
+  const content = DriveApp.getFileById('13czHxp49MFMoV2in32LkoflLupI1pucidj4ceBpKZos').getBlob();
+  const title = Utilities.formatString('%s %s', printerid, new Date().getTime());
   //  var ticket = {
   //    version: '1.0',
   //    print: {

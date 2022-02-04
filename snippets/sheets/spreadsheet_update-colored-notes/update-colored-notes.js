@@ -9,7 +9,7 @@
 function run() {
   var dic = {
     '#ff0000': 'Hello!', // red
-    '#ffff00': 'OK' // yellow
+    '#ffff00': 'OK', // yellow
   };
   var range = SpreadsheetApp.getActiveSheet().getDataRange();
   updateColoredNotes_(dic, range);
@@ -29,8 +29,8 @@ function run() {
 function updateColoredNotes_(dic, range) {
   var colors = range.getBackgrounds();
   return range.setNotes(
-    range.getNotes().map(function(row, i) {
-      return row.map(function(_, j) {
+    range.getNotes().map(function (row, i) {
+      return row.map(function (_, j) {
         if (dic[colors[i][j]]) return dic[colors[i][j]];
         return '';
       });

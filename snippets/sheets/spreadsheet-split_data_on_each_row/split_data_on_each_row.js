@@ -11,9 +11,9 @@ function splitDataOnEachRow() {
   var values = sheet.getDataRange().getValues();
   var headers = values.shift();
   var newValues = [];
-  values.forEach(function(row) {
+  values.forEach(function (row) {
     var lines = row[1].split(/\s*,\s*/);
-    lines.forEach(function(item, j) {
+    lines.forEach(function (item, j) {
       var newRow = [].concat(row);
       newRow[0] += '_' + (j + 1);
       newRow[1] = item;
@@ -21,10 +21,7 @@ function splitDataOnEachRow() {
     });
   });
   newValues.unshift(headers);
-  sheet
-    .clearContents()
-    .getRange(1, 1, newValues.length, newValues[0].length)
-    .setValues(newValues);
+  sheet.clearContents().getRange(1, 1, newValues.length, newValues[0].length).setValues(newValues);
 }
 /**
  * Generates start data for the sample
@@ -38,8 +35,5 @@ function generateData() {
     ['s', 'Sonia', 14],
   ];
   data.unshift(headers);
-  sheet
-    .clearContents()
-    .getRange(1, 1, data.length, data[0].length)
-    .setValues(data);
+  sheet.clearContents().getRange(1, 1, data.length, data[0].length).setValues(data);
 }

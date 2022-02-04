@@ -11,10 +11,7 @@ function onEditAutosort2(event) {
   var sheet = event.range.getSheet();
   if (sheet.getName() !== 'autosort2' || event.range.getColumn() !== 2) return;
 
-  sheet
-    .getRange('B3:G150')
-    .sort(2)
-    .activate();
+  sheet.getRange('B3:G150').sort(2).activate();
   SpreadsheetApp.getActive().toast('Done');
 }
 // /**

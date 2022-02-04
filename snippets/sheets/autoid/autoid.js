@@ -14,11 +14,8 @@ function autoid_(sheet) {
   var indexDate = data[0].indexOf('DATE');
   if (indexId < 0 || indexDate < 0) return;
   var id = data.reduce(
-    function(p, row) {
-      var year =
-        row[indexDate] && row[indexDate].getTime
-          ? row[indexDate].getFullYear() % 100
-          : '-';
+    function (p, row) {
+      var year = row[indexDate] && row[indexDate].getTime ? row[indexDate].getFullYear() % 100 : '-';
       if (!Object.prototype.hasOwnProperty.call(p.indexByGroup, year)) {
         p.indexByGroup[year] = [];
       }
@@ -38,24 +35,18 @@ function autoid_(sheet) {
   // Logger.log(JSON.stringify(id, null, '  '));
 
   var newId = data
-    .map(function(row, i) {
+    .map(function (row, i) {
       if (row[indexId] !== '') return [row[indexId]];
       if (isNumeric(id.years[i])) {
         var lastId = Math.max.apply(
           null,
-          id.indexByGroup[id.years[i]].filter(function(e) {
+          id.indexByGroup[id.years[i]].filter(function (e) {
             return isNumeric(e);
           })
         );
         lastId = lastId === -Infinity ? 1 : lastId + 1;
         id.indexByGroup[id.years[i]].push(lastId);
-        return [
-          Utilities.formatString(
-            '%s-%s',
-            id.years[i],
-            ('000000000' + lastId).slice(-3)
-          )
-        ];
+        return [Utilities.formatString('%s-%s', id.years[i], ('000000000' + lastId).slice(-3))];
       }
       return [''];
     })
@@ -86,7 +77,7 @@ function onEdit(e) {
 function userActionUpdateId() {
   onEdit({
     range: SpreadsheetApp.getActiveRange(),
-    source: SpreadsheetApp.getActive()
+    source: SpreadsheetApp.getActive(),
   });
 }
 
@@ -94,10 +85,7 @@ function userActionUpdateId() {
  *
  */
 function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu('AUTOID')
-    .addItem('Update', 'userActionUpdateId')
-    .addToUi();
+  SpreadsheetApp.getUi().createMenu('AUTOID').addItem('Update', 'userActionUpdateId').addToUi();
 }
 
 /**

@@ -5,12 +5,7 @@ function autoSortOnEdit_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName('Completed Returns');
   if (!sheet) return;
-  var range = sheet.getRange(
-    4,
-    1,
-    sheet.getLastRow() - 1,
-    sheet.getLastColumn()
-  );
+  var range = sheet.getRange(4, 1, sheet.getLastRow() - 1, sheet.getLastColumn());
   range.sort({ column: 2, ascending: true });
 }
 

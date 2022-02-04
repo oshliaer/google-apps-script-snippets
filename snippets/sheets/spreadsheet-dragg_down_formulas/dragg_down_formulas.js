@@ -39,13 +39,9 @@ function run2() {
  */
 function draggDownFormulas_(base, colFormula) {
   const baseValues = base.getValues();
-  const lastBase =
-    baseValues.length - baseValues.reverse().findIndex((row) => row[0] !== '');
+  const lastBase = baseValues.length - baseValues.reverse().findIndex((row) => row[0] !== '');
   const colFormulaFormula = colFormula.getFormula();
-  colFormula
-    .getSheet()
-    .getRange(base.getRow(), colFormula.getColumn(), lastBase)
-    .setFormula(colFormulaFormula);
+  colFormula.getSheet().getRange(base.getRow(), colFormula.getColumn(), lastBase).setFormula(colFormulaFormula);
 }
 
 /**
@@ -59,8 +55,7 @@ function draggDownFormulas_(base, colFormula) {
  */
 function draggDownOneFormula_(base, colFormula) {
   const baseValues = base.getValues();
-  const lastBase =
-    baseValues.length - baseValues.reverse().findIndex((row) => row[0] !== '');
+  const lastBase = baseValues.length - baseValues.reverse().findIndex((row) => row[0] !== '');
   const colFormulaFormula = colFormula.getFormula();
   colFormula
     .getSheet()

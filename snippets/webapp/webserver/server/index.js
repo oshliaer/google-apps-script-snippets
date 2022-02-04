@@ -10,7 +10,5 @@ function doGet(e) {
  * @param {GoogleAppsScript.Events.DoPost}
  */
 function doPost(e) {
-  return ContentService.createTextOutput(
-    JSON.stringify({ date: new Date().toLocaleTimeString('ru') })
-  );
+  return ContentService.createTextOutput(JSON.stringify({ date: new Date().toLocaleTimeString('ru') }));
 }

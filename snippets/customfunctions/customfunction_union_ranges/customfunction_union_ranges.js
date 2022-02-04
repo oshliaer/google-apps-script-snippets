@@ -23,7 +23,7 @@ function UNIONRANGES(ranges) {
     if (length > 400000) return '#ERROR_OVER_TOTAL_CELLS: ' + length;
     for (var i = 0; i < arguments.length; i++)
       result = result.concat(
-        arguments[i].filter(function(el) {
+        arguments[i].filter(function (el) {
           return el.join('').length > 0;
         })
       );

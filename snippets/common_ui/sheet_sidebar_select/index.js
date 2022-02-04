@@ -7,10 +7,7 @@
  * Create menu
  */
 function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu('My tools')
-    .addItem('Show sidebar', 'userActionShowSidebar')
-    .addToUi();
+  SpreadsheetApp.getUi().createMenu('My tools').addItem('Show sidebar', 'userActionShowSidebar').addToUi();
 }
 
 /**

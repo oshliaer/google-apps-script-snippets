@@ -22,9 +22,7 @@
  * Saves the unreads inbox to the spreadsheet
  */
 function run() {
-  var sheet = SpreadsheetApp.openById(
-    '1YvGje4cbSwHQwsQFYVQGfaYG4fm0LLd1T2RTjvZ5i5c'
-  ).getSheetByName('sheet');
+  var sheet = SpreadsheetApp.openById('1YvGje4cbSwHQwsQFYVQGfaYG4fm0LLd1T2RTjvZ5i5c').getSheetByName('sheet');
   sheet.clearContents();
 
   /**
@@ -33,15 +31,12 @@ function run() {
    * @param {number} i
    * @param {GoogleAppsScript.Gmail.GmailAttachment[]} attachment
    */
-  var cbParser = function(attachment) {
+  var cbParser = function (attachment) {
     var values = [];
     if (attachment.getContentType() === 'text/plain') {
       var text = attachment.getDataAsString();
       values = [text.split(/[\n\r]/g)];
-      if (values.length)
-        sheet
-          .getRange(sheet.getLastRow() + 1, 1, values.length, values[0].length)
-          .setValues(values);
+      if (values.length) sheet.getRange(sheet.getLastRow() + 1, 1, values.length, values[0].length).setValues(values);
     }
     return values;
   };
@@ -50,7 +45,7 @@ function run() {
    * @param {GoogleAppsScript.Gmail.GmailThread} thread
    * @param {AttachmentsOnDriveMessage[]} messages
    */
-  var cbThread = function(thread) {
+  var cbThread = function (thread) {
     thread.markRead().moveToArchive();
   };
 
@@ -70,20 +65,15 @@ function run() {
  * @param {callbackThread} cbThread
  * @return {AttachmentsOnSheet[]}
  */
-function saveAttachmentsContentToSpreadsheet_(
-  searchQuery,
-  sheet,
-  cbParser,
-  cbThread
-) {
-  return GmailApp.search(searchQuery).map(function(thread) {
+function saveAttachmentsContentToSpreadsheet_(searchQuery, sheet, cbParser, cbThread) {
+  return GmailApp.search(searchQuery).map(function (thread) {
     var res = {
       thread: thread,
-      messages: thread.getMessages().map(function(message) {
+      messages: thread.getMessages().map(function (message) {
         var attachments = message.getAttachments();
         var values = attachments.map(cbParser);
         return { message: message, attachments: attachments, values: values };
-      })
+      }),
     };
     cbThread && cbThread(thread);
     return res;

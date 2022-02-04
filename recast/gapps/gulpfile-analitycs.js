@@ -20,17 +20,20 @@ gulp.task('gapps', ['gs'], function (cb) {
     console.log(stderr);
     cb(err);
   });
-})
+});
 
 gulp.task('googleanalytics', ['clean'], function () {
-  gulp.src(['./index.html'], { base: './' })
+  gulp
+    .src(['./index.html'], { base: './' })
     .pipe(debug())
-    .pipe(replace('<!-- googleanalytics.html -->', function (match) {
-      return fs.readFileSync('./googleanalytics.html');
-    }))
+    .pipe(
+      replace('<!-- googleanalytics.html -->', function (match) {
+        return fs.readFileSync('./googleanalytics.html');
+      })
+    )
     .pipe(gulp.dest('src'));
 });
 
 gulp.task('default', ['gapps'], function () {
   return;
-})
+});

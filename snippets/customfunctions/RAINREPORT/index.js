@@ -30,8 +30,7 @@ function RAINREPORT(rain, skipEmpty = true) {
         data: [],
         name: _cloud_[i],
       };
-    if (_report_[_cloud_[i]].data.indexOf(item) === -1)
-      _report_[_cloud_[i]].data.push(item);
+    if (_report_[_cloud_[i]].data.indexOf(item) === -1) _report_[_cloud_[i]].data.push(item);
   });
   return Object.keys(_report_)
     .sort()

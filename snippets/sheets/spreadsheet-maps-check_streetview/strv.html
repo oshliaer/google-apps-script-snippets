@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <base target="_top">
+    <base target="_top" />
   </head>
   <body>
     <script>
       var streetViewService = new google.maps.StreetViewService();
-var STREETVIEW_MAX_DISTANCE = 100;
-var latLng = new google.maps.LatLng(40.7140, -74.0062);
-streetViewService.getPanoramaByLocation(latLng, STREETVIEW_MAX_DISTANCE, function (streetViewPanoramaData, status) {
-    if (status === google.maps.StreetViewStatus.OK) {
-        // ok
-    } else {
-        // no street view available in this range, or some error occurred
-    }
-});
+      var STREETVIEW_MAX_DISTANCE = 100;
+      var latLng = new google.maps.LatLng(40.714, -74.0062);
+      streetViewService.getPanoramaByLocation(
+        latLng,
+        STREETVIEW_MAX_DISTANCE,
+        function (streetViewPanoramaData, status) {
+          if (status === google.maps.StreetViewStatus.OK) {
+            // ok
+          } else {
+            // no street view available in this range, or some error occurred
+          }
+        }
+      );
     </script>
   </body>
 </html>
-
-

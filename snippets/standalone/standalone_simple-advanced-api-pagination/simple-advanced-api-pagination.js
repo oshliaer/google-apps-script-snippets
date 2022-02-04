@@ -18,7 +18,7 @@ function userActionRun() {
   Logger.log(
     '\n%s',
     data
-      .map(function(item, i) {
+      .map(function (item, i) {
         return Utilities.formatString('%s. %s', i + 1, item.snippet.title);
       })
       .join('\n')

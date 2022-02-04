@@ -7,6 +7,5 @@
  * @param {GoogleAppsScript.Events.SheetsOnEdit} e
  */
 function onEdit(e) {
-  if (e.range.getColumn() === 1)
-    e.range.offset(0, 1).setNotes(e.range.getValues());
+  if (e.range.getColumn() === 1) e.range.offset(0, 1).setNotes(e.range.getValues());
 }

@@ -14,8 +14,5 @@ function run() {
  * Create menu for handy use
  */
 function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu('Apps Script Snippets')
-    .addItem('Unlink all urls on the Sheet', 'run')
-    .addToUi();
+  SpreadsheetApp.getUi().createMenu('Apps Script Snippets').addItem('Unlink all urls on the Sheet', 'run').addToUi();
 }

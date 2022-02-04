@@ -56,15 +56,13 @@ function userActionResetMultipleSheetsByColor() {
         .getFontColors()
         .reduce((p, row, i) => {
           var colors = row.reduce((p2, color, j) => {
-            if (color === fColor)
-              p2.push(Utilities.formatString('R%sC%s', i + 1, j + 1));
+            if (color === fColor) p2.push(Utilities.formatString('R%sC%s', i + 1, j + 1));
             return p2;
           }, []);
           if (colors.length) p = p.concat(colors);
           return p;
         }, []);
-      if (rangesAddressesList.length)
-        resetByRangesList_(sheet, rangesAddressesList);
+      if (rangesAddressesList.length) resetByRangesList_(sheet, rangesAddressesList);
     }
   });
 }
@@ -81,10 +79,7 @@ function userActionResetMultipleSheetsBySpecialColumns() {
         .getRange('2:2')
         .getValues()[0]
         .reduce((p, cell, i) => {
-          if (cell === 'GSA')
-            p.push(
-              Utilities.formatString('R3C%s:R%sC%s', i + 1, lastRow, i + 1)
-            );
+          if (cell === 'GSA') p.push(Utilities.formatString('R3C%s:R%sC%s', i + 1, lastRow, i + 1));
           return p;
         }, []);
       if (rangesAddressesList.length) {

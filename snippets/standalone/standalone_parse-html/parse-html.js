@@ -8,9 +8,7 @@
  * User action. Runs the snippet
  */
 function userActionRun() {
-  var content = UrlFetchApp.fetch(
-    'https://ru.wikipedia.org/wiki/Россия'
-  ).getContentText();
+  var content = UrlFetchApp.fetch('https://ru.wikipedia.org/wiki/Россия').getContentText();
 
   var data = parseHtmlToValue_(content);
 
@@ -41,7 +39,7 @@ function parseHtmlToValue_(content) {
   var match = content_.match(/<h1.*?id="firstHeading".*?>(.*?)<\/h1>/i);
   res['firstHeading'] = {
     match: match,
-    value: match && match.length ? match[1] : ''
+    value: match && match.length ? match[1] : '',
   };
 
   return res;

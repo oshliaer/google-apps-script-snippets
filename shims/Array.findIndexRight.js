@@ -7,7 +7,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
 if (!Array.prototype.findIndex) {
   Object.defineProperty(Array.prototype, 'findIndex', {
-    value: function(predicate) {
+    value: function (predicate) {
       // 1. Let O be ? ToObject(this value).
       if (this == null) {
         throw new TypeError('"this" is null or not defined');
@@ -47,6 +47,6 @@ if (!Array.prototype.findIndex) {
       return -1;
     },
     configurable: true,
-    writable: true
+    writable: true,
   });
 }

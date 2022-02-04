@@ -2,8 +2,5 @@
   "timeZone": "Europe/Moscow",
   "dependencies": {},
   "exceptionLogging": "STACKDRIVER",
-  "oauthScopes": [
-    "https://mail.google.com/",
-    "https://www.googleapis.com/auth/drive"
-  ]
+  "oauthScopes": ["https://mail.google.com/", "https://www.googleapis.com/auth/drive"]
 }

@@ -30,17 +30,17 @@ function FilterCriteriasStash(sheet) {
   var values = filter.getRange().getValues();
   // var columns =
   var headers = values.slice(0, 1)[0];
-  var criterias = headers.map(function(header, i) {
+  var criterias = headers.map(function (header, i) {
     return {
       header: header,
       index: i,
-      criteria: filter.getColumnFilterCriteria(i + 1)
+      criteria: filter.getColumnFilterCriteria(i + 1),
     };
   });
-  this.getCriterias = function() {
+  this.getCriterias = function () {
     return criterias;
   };
-  this.getSlip = function() {
+  this.getSlip = function () {
     return slip;
   };
 }
@@ -49,13 +49,12 @@ function FilterCriteriasStash(sheet) {
  * @param {GoogleAppsScript.Spreadsheet.Range} range
  * @param {number} slip
  */
-FilterCriteriasStash.prototype.apply = function(range, slip) {
+FilterCriteriasStash.prototype.apply = function (range, slip) {
   slip = slip || 0;
   var filter = range.newFilter();
   var criterias = this.getCriterias();
   var values = filter.getRange().getValues();
   var headers = values.slice(0, 1)[0];
-  
 };
 
 var firstCopyCol = 3;
@@ -94,9 +93,7 @@ function addNewCueNote() {
 
     // COPY FORMULAS DOWN FOR SPECIFIED COLUMNS
 
-    sheet
-      .getRange(lRow, firstCopyCol, 1, numColCopy)
-      .copyTo(sheet.getRange(lRow + 1, firstCopyCol, 1, numColCopy));
+    sheet.getRange(lRow, firstCopyCol, 1, numColCopy).copyTo(sheet.getRange(lRow + 1, firstCopyCol, 1, numColCopy));
 
     // SETS NOTE TYPE
     sheet.getRange(sheet.getLastRow(), noteTypeCol).setValue(noteType);
@@ -108,8 +105,7 @@ function addNewCueNote() {
     var newFilter = dataRange.createFilter();
     newNumColumns = dataRange.getNumColumns();
     for (c = 1; c <= oldNumColumns && c <= newNumColumns; c++) {
-      if (criterias['_' + c])
-        newFilter.setColumnFilterCriteria(c, criterias['_' + c]);
+      if (criterias['_' + c]) newFilter.setColumnFilterCriteria(c, criterias['_' + c]);
     }
   }
 }

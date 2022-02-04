@@ -3,9 +3,7 @@
   "dependencies": {},
   "exceptionLogging": "STACKDRIVER",
   "runtimeVersion": "V8",
-  "oauthScopes": [
-    "https://www.googleapis.com/auth/drive.addons.metadata.readonly"
-  ],
+  "oauthScopes": ["https://www.googleapis.com/auth/drive.addons.metadata.readonly"],
   "addOns": {
     "common": {
       "name": "Google Apps Script Snippets",

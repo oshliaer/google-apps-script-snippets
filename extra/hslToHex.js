@@ -9,8 +9,8 @@
  * @return {string} The HEX representation
  */
 
-var hslToHex = function(h, s, l) {
-  var hue2rgb = function(p, q, t) {
+var hslToHex = function (h, s, l) {
+  var hue2rgb = function (p, q, t) {
     if (t < 0) t += 1;
     if (t > 1) t -= 1;
     if (t < 1 / 6) return p + (q - p) * 6 * t;
@@ -18,7 +18,7 @@ var hslToHex = function(h, s, l) {
     if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
     return p;
   };
-  var toHex = function(x) {
+  var toHex = function (x) {
     var hex = Math.round(x * 255).toString(16);
     return hex.length === 1 ? '0' + hex : hex;
   };

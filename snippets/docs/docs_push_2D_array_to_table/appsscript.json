@@ -1,10 +1,7 @@
 {
   "timeZone": "Europe/Moscow",
-  "oauthScopes": [
-    "https://www.googleapis.com/auth/documents"
-  ],
-  "dependencies": {
-  },
+  "oauthScopes": ["https://www.googleapis.com/auth/documents"],
+  "dependencies": {},
   "exceptionLogging": "STACKDRIVER",
-    "runtimeVersion": "V8"
+  "runtimeVersion": "V8"
 }

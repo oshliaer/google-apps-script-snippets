@@ -1,11 +1,13 @@
 {
   "timeZone": "Europe/Moscow",
   "dependencies": {
-    "libraries": [{
-      "userSymbol": "LodashGS",
-      "libraryId": "1SQ0PlSMwndIuOAgtVJdjxsuXueECtY9OGejVDS37ckSVbMll73EXf2PW",
-      "version": "5"
-    }]
+    "libraries": [
+      {
+        "userSymbol": "LodashGS",
+        "libraryId": "1SQ0PlSMwndIuOAgtVJdjxsuXueECtY9OGejVDS37ckSVbMll73EXf2PW",
+        "version": "5"
+      }
+    ]
   },
   "exceptionLogging": "STACKDRIVER",
   "runtimeVersion": "V8"

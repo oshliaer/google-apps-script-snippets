@@ -53,7 +53,7 @@ function getPreFillEntriesMap_(form) {
 
   var params = prefilledUrl
     .split('&entry.')
-    .map(str => str.split('=')[0])
+    .map((str) => str.split('=')[0])
     .slice(1);
 
   return {
@@ -76,30 +76,13 @@ function getDefaultItemResponse_(item) {
     case FormApp.ItemType.PARAGRAPH_TEXT:
       return item.asParagraphTextItem().createResponse('-');
     case FormApp.ItemType.MULTIPLE_CHOICE:
-      return item.asMultipleChoiceItem().createResponse(
-        item
-          .asMultipleChoiceItem()
-          .getChoices()[0]
-          .getValue()
-      );
+      return item.asMultipleChoiceItem().createResponse(item.asMultipleChoiceItem().getChoices()[0].getValue());
     case FormApp.ItemType.CHECKBOX:
-      return item.asCheckboxItem().createResponse([
-        item
-          .asCheckboxItem()
-          .getChoices()[0]
-          .getValue(),
-      ]);
+      return item.asCheckboxItem().createResponse([item.asCheckboxItem().getChoices()[0].getValue()]);
     case FormApp.ItemType.LIST:
-      return item.asListItem().createResponse(
-        item
-          .asListItem()
-          .getChoices()[0]
-          .getValue()
-      );
+      return item.asListItem().createResponse(item.asListItem().getChoices()[0].getValue());
     case FormApp.ItemType.SCALE:
-      return item
-        .asScaleItem()
-        .createResponse(item.asScaleItem().getLowerBound());
+      return item.asScaleItem().createResponse(item.asScaleItem().getLowerBound());
     case FormApp.ItemType.GRID: {
       const columns = item.asGridItem().getColumns();
       const resp = item

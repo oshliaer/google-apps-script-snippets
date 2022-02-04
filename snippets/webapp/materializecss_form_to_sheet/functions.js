@@ -2,19 +2,15 @@
  *
  */
 function getCourseCode() {
-  var url =
-    'https://docs.google.com/spreadsheets/d/19GRd3EarV_SM3Y8MYdpWvQNYZVZgLZih4EO4gX_JSko/edit?usp=sharing';
+  var url = 'https://docs.google.com/spreadsheets/d/19GRd3EarV_SM3Y8MYdpWvQNYZVZgLZih4EO4gX_JSko/edit?usp=sharing';
   var ss = SpreadsheetApp.openByUrl(url);
   var ws = ss.getSheetByName('course codes');
-  var data = ws
-    .getRange(1, 1)
-    .getDataRegion()
-    .getValues();
+  var data = ws.getRange(1, 1).getDataRegion().getValues();
   // Logger.log(data);
 
   var courseOptions = {};
 
-  data.forEach(function(value) {
+  data.forEach(function (value) {
     courseOptions[value[0]] = null;
   });
   // Logger.log(data);
@@ -27,23 +23,21 @@ function getCourseCode() {
  */
 function getExpectations2(code) {
   var patt = new RegExp(code.slice(0, 5), 'i');
-  var data = SpreadsheetApp.openById(
-    '1evNXXgFITrdNwsSdGXmprgzti74AQy03dg0igP5nT0I'
-  )
+  var data = SpreadsheetApp.openById('1evNXXgFITrdNwsSdGXmprgzti74AQy03dg0igP5nT0I')
     .getSheetByName('expectations')
     .getDataRange()
     .getValues();
-  var colIndex = data[0].reduce(function(p, c, i) {
+  var colIndex = data[0].reduce(function (p, c, i) {
     return patt.test(c) ? i : p;
   }, -1);
   return colIndex === -1
     ? []
     : data
         .slice(1)
-        .filter(function(row) {
+        .filter(function (row) {
           return row[colIndex] !== '';
         })
-        .map(function(row) {
+        .map(function (row) {
           return row[colIndex];
         });
 }
@@ -53,8 +47,7 @@ function getExpectations2(code) {
  * @param {*} index
  */
 function getColumnValues(index) {
-  var url =
-    'https://docs.google.com/spreadsheets/d/19GRd3EarV_SM3Y8MYdpWvQNYZVZgLZih4EO4gX_JSko/edit?usp=sharing';
+  var url = 'https://docs.google.com/spreadsheets/d/19GRd3EarV_SM3Y8MYdpWvQNYZVZgLZih4EO4gX_JSko/edit?usp=sharing';
   var ss = SpreadsheetApp.openByUrl(url).getSheetByName('expectations');
 
   var colIndex = getColumnIndex(index);
@@ -70,8 +63,7 @@ function getColumnValues(index) {
  * @param {*} label
  */
 function getColumnIndex(label) {
-  var url =
-    'https://docs.google.com/spreadsheets/d/19GRd3EarV_SM3Y8MYdpWvQNYZVZgLZih4EO4gX_JSko/edit?usp=sharing';
+  var url = 'https://docs.google.com/spreadsheets/d/19GRd3EarV_SM3Y8MYdpWvQNYZVZgLZih4EO4gX_JSko/edit?usp=sharing';
   var ss = SpreadsheetApp.openByUrl(url).getSheetByName('expectations');
 
   var lc = ss.getLastColumn();

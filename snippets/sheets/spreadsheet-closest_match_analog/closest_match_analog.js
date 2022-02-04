@@ -10,7 +10,7 @@ function run() {
   const list = SpreadsheetApp.getActiveSheet()
     .getRange('G2:G30')
     .getValues()
-    .map(row => parseFloat(row[0]))
+    .map((row) => parseFloat(row[0]))
     .sort();
   console.log(closest(-98, list));
 }
@@ -19,9 +19,7 @@ function run() {
  * @customfunction
  */
 function CLOSEST(searchKey, range) {
-  const list = Array.isArray(range)
-    ? range.map(row => parseFloat(row[0])).sort()
-    : [[parseFloat(range)]];
+  const list = Array.isArray(range) ? range.map((row) => parseFloat(row[0])).sort() : [[parseFloat(range)]];
   return closest(parseFloat(searchKey), list);
 }
 
@@ -31,6 +29,6 @@ function CLOSEST(searchKey, range) {
  * @param {Array.<number>} list
  */
 const closest = (searchKey, list) =>
-  list.reduce(function(p, c) {
+  list.reduce(function (p, c) {
     return Math.abs(c - searchKey) < Math.abs(p - searchKey) ? c : p;
   });

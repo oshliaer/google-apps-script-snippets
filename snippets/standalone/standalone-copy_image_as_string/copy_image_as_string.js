@@ -11,13 +11,8 @@
  * @return {GoogleAppsScript.Spreadsheet.OverGridImage}
  */
 function insertImage(params) {
-  var overGridImage = params.sheet.insertImage(
-    params.blobSource,
-    params.column,
-    params.row
-  );
-  if (params.functionName && params.functionName.length)
-    overGridImage.assignScript(params.functionName);
+  var overGridImage = params.sheet.insertImage(params.blobSource, params.column, params.row);
+  if (params.functionName && params.functionName.length) overGridImage.assignScript(params.functionName);
   return overGridImage;
 }
 
@@ -67,8 +62,6 @@ function test_insertImage() {
   digestedBlob.setName(name);
   digestedBlob.setContentType(contentType);
 
-  var sheet = SpreadsheetApp.openById(
-    '1XWadinEE5OauB2XpYGYDxJRSYAPiP7MDjeObzewKdzY'
-  ).getSheets()[0];
+  var sheet = SpreadsheetApp.openById('1XWadinEE5OauB2XpYGYDxJRSYAPiP7MDjeObzewKdzY').getSheets()[0];
   insertImage({ sheet: sheet, blobSource: digestedBlob, column: 1, row: 1 });
 }

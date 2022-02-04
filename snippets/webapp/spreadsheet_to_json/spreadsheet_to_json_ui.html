@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
   </head>
   <body>
     <div class="container">
@@ -46,14 +43,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script>
       var webappUrl = '';
-      $(function() {
+      $(function () {
         google.script.run
-          .withSuccessHandler(function(url) {
+          .withSuccessHandler(function (url) {
             webappUrl = url;
             console.log(url);
           })
           .getWebappUrl();
-        $('#spreadsheetId').change(function() {
+        $('#spreadsheetId').change(function () {
           var id = $(this).val();
           var aria = 'true';
           if (id.length > 40 && id.length < 60 && webappUrl.length) {
@@ -63,9 +60,7 @@
           } else {
             $('#getJsonLink').addClass('disabled');
           }
-          $('#getJsonLink')
-            .attr('href', id)
-            .attr('aria-disabled', aria);
+          $('#getJsonLink').attr('href', id).attr('aria-disabled', aria);
         });
       });
     </script>

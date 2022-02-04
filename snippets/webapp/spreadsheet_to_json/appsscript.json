@@ -1,11 +1,13 @@
 {
   "timeZone": "Europe/Moscow",
   "dependencies": {
-    "enabledAdvancedServices": [{
-      "userSymbol": "Sheets",
-      "serviceId": "sheets",
-      "version": "v4"
-    }]
+    "enabledAdvancedServices": [
+      {
+        "userSymbol": "Sheets",
+        "serviceId": "sheets",
+        "version": "v4"
+      }
+    ]
   },
   "webapp": {
     "access": "ANYONE_ANONYMOUS",

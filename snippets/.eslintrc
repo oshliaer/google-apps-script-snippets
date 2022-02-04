@@ -5,6 +5,7 @@
     "googleappsscript/googleappsscript": true
   },
   "rules": {
+    "code": 120,
     "prettier/prettier": "error",
     "no-var": "off",
     "no-unused-vars": ["error", { "varsIgnorePattern": "[on|run]*" }],

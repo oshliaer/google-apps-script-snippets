@@ -5,8 +5,7 @@ const got = require('got');
 const fs = require('fs').promises;
 
 const getOriginFile = async () => {
-  const url =
-    'https://raw.githubusercontent.com/jerrybendy/url-search-params-polyfill/master/index.js';
+  const url = 'https://raw.githubusercontent.com/jerrybendy/url-search-params-polyfill/master/index.js';
   const { body } = await got(url);
   return body;
 };
@@ -37,7 +36,7 @@ const main = async () => {
   return fs.writeFile('./shims/URLSearchParams.js', content, 'utf8');
 };
 
-main().catch(err => {
+main().catch((err) => {
   console.error(err.message);
   process.exit(1);
 });

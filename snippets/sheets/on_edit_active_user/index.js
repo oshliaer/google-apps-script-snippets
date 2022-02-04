@@ -12,11 +12,7 @@ function onedit(e) {
   if (e.range.getRow() < 2) return;
   e.range
     .offset(0, -1 * e.range.getColumn() + 1)
-    .setValue(
-      Session.getEffectiveUser().getEmail() +
-        ' ' +
-        Session.getActiveUser().getEmail()
-    );
+    .setValue(Session.getEffectiveUser().getEmail() + ' ' + Session.getActiveUser().getEmail());
 }
 
 /**
@@ -28,11 +24,7 @@ function onEdit(e) {
   if (e.range.getRow() < 2) return;
   e.range
     .offset(0, -1 * e.range.getColumn() + 2)
-    .setValue(
-      Session.getEffectiveUser().getEmail() +
-        ' ' +
-        Session.getActiveUser().getEmail()
-    );
+    .setValue(Session.getEffectiveUser().getEmail() + ' ' + Session.getActiveUser().getEmail());
 }
 
 /**

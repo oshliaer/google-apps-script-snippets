@@ -6,9 +6,7 @@
  */
 function run() {
   // https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html
-  const file = saveFileFromUrl_(
-    'https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv'
-  );
+  const file = saveFileFromUrl_('https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv');
   console.log(file.getName());
 }
 

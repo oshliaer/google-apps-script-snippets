@@ -1,6 +1,6 @@
 /* exported Instances */
 
-const Instances = (self => {
+const Instances = ((self) => {
   /**
    * List instances
    * @param {{
@@ -18,17 +18,11 @@ const Instances = (self => {
       return p;
     }, {});
     const queryParams = Object.keys(request)
-      .reduce(
-        (p, c) =>
-          pathParamsNames.includes(c)
-            ? p
-            : p.push(`${c}=${decodeURIComponent(request[c])}`) && p,
-        []
-      )
+      .reduce((p, c) => (pathParamsNames.includes(c) ? p : p.push(`${c}=${decodeURIComponent(request[c])}`) && p), [])
       .join('&');
-    const url = `${host}/${pathParams.project}/zones/${
-      pathParams.zone
-    }/instances${queryParams.length ? '?' : ''}${queryParams}`;
+    const url = `${host}/${pathParams.project}/zones/${pathParams.zone}/instances${
+      queryParams.length ? '?' : ''
+    }${queryParams}`;
 
     console.log(url);
     const options = Object.assign(
@@ -62,17 +56,9 @@ const Instances = (self => {
       return p;
     }, {});
     const queryParams = Object.keys(request)
-      .reduce(
-        (p, c) =>
-          pathParamsNames.includes(c)
-            ? p
-            : p.push(`${c}=${decodeURIComponent(request[c])}`) && p,
-        []
-      )
+      .reduce((p, c) => (pathParamsNames.includes(c) ? p : p.push(`${c}=${decodeURIComponent(request[c])}`) && p), [])
       .join('&');
-    const url = `${host}/${pathParams.project}/zones/${
-      pathParams.zone
-    }/instances/${pathParams.resourceId}/stop${
+    const url = `${host}/${pathParams.project}/zones/${pathParams.zone}/instances/${pathParams.resourceId}/stop${
       queryParams.length ? '?' : ''
     }${queryParams}`;
     const options = Object.assign(
@@ -107,17 +93,9 @@ const Instances = (self => {
       return p;
     }, {});
     const queryParams = Object.keys(request)
-      .reduce(
-        (p, c) =>
-          pathParamsNames.includes(c)
-            ? p
-            : p.push(`${c}=${decodeURIComponent(request[c])}`) && p,
-        []
-      )
+      .reduce((p, c) => (pathParamsNames.includes(c) ? p : p.push(`${c}=${decodeURIComponent(request[c])}`) && p), [])
       .join('&');
-    const url = `${host}/${pathParams.project}/zones/${
-      pathParams.zone
-    }/instances/${pathParams.resourceId}/start${
+    const url = `${host}/${pathParams.project}/zones/${pathParams.zone}/instances/${pathParams.resourceId}/start${
       queryParams.length ? '?' : ''
     }${queryParams}`;
     const options = Object.assign(

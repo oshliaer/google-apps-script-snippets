@@ -14,8 +14,7 @@ function run() {
  */
 function base26ABCto10(string) {
   return [...string].reduceRight(
-    (p, c, i, a) =>
-      p + (c.toUpperCase().charCodeAt(0) - 64) * 26 ** (a.length - i - 1),
+    (p, c, i, a) => p + (c.toUpperCase().charCodeAt(0) - 64) * 26 ** (a.length - i - 1),
     0
   );
 }

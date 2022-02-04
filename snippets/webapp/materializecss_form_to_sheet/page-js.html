@@ -1,5 +1,5 @@
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function () {
     var multiSelect = document.querySelectorAll('select');
     M.FormSelect.init(multiSelect);
 
@@ -8,23 +8,19 @@
     document.getElementById('btn').addEventListener('click', collectForm);
   });
 
-  const onAutocompleteCourseCode = courseCode => {
-    google.script.run
-      .withSuccessHandler(listExpectations)
-      .getExpectations2(courseCode);
+  const onAutocompleteCourseCode = (courseCode) => {
+    google.script.run.withSuccessHandler(listExpectations).getExpectations2(courseCode);
   };
 
   const values = Array.from(document.querySelectorAll('input[type="checkbox"]'))
-    .filter(checkbox => checkbox.checked)
-    .map(checkbox => checkbox.value);
+    .filter((checkbox) => checkbox.checked)
+    .map((checkbox) => checkbox.value);
 
   function collectForm() {
     var submission = {};
     submission.grade = document.getElementById('grade').value;
     submission.courseCode = document.getElementById('courseCode').value;
-    submission.expectations = M.FormSelect.getInstance(
-      document.getElementById('expectations')
-    )
+    submission.expectations = M.FormSelect.getInstance(document.getElementById('expectations'))
       .getSelectedValues()
       .join('; ');
 
@@ -56,12 +52,9 @@
   function listExpectations(listLabels) {
     console.log(listLabels);
     const elm = document.getElementById('expectations');
-    const label = listLabels
-      .map(row => `<option value="${row}">${row}</option>`)
-      .join('');
+    const label = listLabels.map((row) => `<option value="${row}">${row}</option>`).join('');
 
-    elm.innerHTML =
-      '<option disabled selected>Select expectations not met</option>' + label;
+    elm.innerHTML = '<option disabled selected>Select expectations not met</option>' + label;
     setTimeout(() => M.FormSelect.init(elm), 0);
   }
 </script>

@@ -23,9 +23,6 @@ function findAndReplace_(book, text) {
     return groups;
   }, {});
   return Object.keys(a1NotationsGroups).map((sheetName) =>
-    book
-      .getSheetByName(sheetName)
-      .getRangeList(a1NotationsGroups[sheetName])
-      .clearContent()
+    book.getSheetByName(sheetName).getRangeList(a1NotationsGroups[sheetName]).clearContent()
   );
 }

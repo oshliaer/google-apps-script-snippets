@@ -3,7 +3,7 @@
  */
 function run() {
   const dataRange = SpreadsheetApp.getActiveSheet().getDataRange();
-  dataRange.setValues(dataRange.getValues().map(row => row.sort()));
+  dataRange.setValues(dataRange.getValues().map((row) => row.sort()));
 }
 
 /**
@@ -16,14 +16,8 @@ function shuffleActiveRange() {
   const _ = LodashGS.load();
 
   const activeRange = SpreadsheetApp.getActiveRange();
-  activeRange.setValues(
-    _.shuffle(activeRange.getValues().map(row => _.shuffle(row)))
-  );
+  activeRange.setValues(_.shuffle(activeRange.getValues().map((row) => _.shuffle(row))));
 }
 
 const onOpen = () =>
-  SpreadsheetApp.getUi()
-    .createMenu('DoIt')
-    .addItem('Run', 'run')
-    .addItem('Shuffle', 'shuffleActiveRange')
-    .addToUi();
+  SpreadsheetApp.getUi().createMenu('DoIt').addItem('Run', 'run').addItem('Shuffle', 'shuffleActiveRange').addToUi();

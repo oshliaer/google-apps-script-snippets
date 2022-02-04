@@ -24,16 +24,12 @@ function run2() {
 
   const action = (values, i, i2) => {
     const data = values.slice(i, i + i2);
-    archive
-      .getRange(archive.getLastRow() + 1, 1, data.length, data[0].length)
-      .setValues(data);
+    archive.getRange(archive.getLastRow() + 1, 1, data.length, data[0].length).setValues(data);
   };
 
   const condition = (values, i) => {
     const row = values[i];
-    return (
-      i > 0 && row[0] !== '' && row[1] !== '' && row[3] !== '' && row[5] !== ''
-    );
+    return i > 0 && row[0] !== '' && row[1] !== '' && row[3] !== '' && row[5] !== '';
   };
 
   deleteRowsByConditional_(sheet, condition, action);

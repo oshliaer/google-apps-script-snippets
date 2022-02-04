@@ -1,9 +1,6 @@
 {
   "timeZone": "Europe/Moscow",
-  "oauthScopes": [
-    "https://www.googleapis.com/auth/spreadsheets"
-  ],
-  "dependencies": {
-  },
+  "oauthScopes": ["https://www.googleapis.com/auth/spreadsheets"],
+  "dependencies": {},
   "exceptionLogging": "STACKDRIVER"
 }

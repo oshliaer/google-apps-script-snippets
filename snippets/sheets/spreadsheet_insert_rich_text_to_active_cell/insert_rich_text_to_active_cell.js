@@ -50,11 +50,7 @@ function insertRichTextToActiveCellByCondition() {
   var richTextBuilder = SpreadsheetApp.newRichTextValue();
   var text = 'Some text ' + styleName;
   richTextBuilder.setText(text);
-  richTextBuilder.setTextStyle(
-    text.length - styleName.length,
-    text.length,
-    textStyle
-  );
+  richTextBuilder.setTextStyle(text.length - styleName.length, text.length, textStyle);
   var value = richTextBuilder.build();
 
   range.setRichTextValue(value);

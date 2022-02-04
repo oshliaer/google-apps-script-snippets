@@ -10,10 +10,7 @@
       }
     </style>
     <title>Document</title>
-    <script
-      type="text/javascript"
-      src="https://www.gstatic.com/charts/loader.js"
-    ></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', { packages: ['calendar'] });
 
@@ -23,15 +20,13 @@
         dataTable.addColumn({ type: 'date', id: headers[0] });
         dataTable.addColumn({ type: 'number', id: headers[1] });
         dataTable.addRows(
-          data.map(function(row) {
+          data.map(function (row) {
             row[0] = new Date(row[0]);
             return row;
           })
         );
 
-        var chart = new google.visualization.Calendar(
-          document.getElementById('calendar_basic')
-        );
+        var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
 
         var options = {
           title: 'Calendar Chart',
@@ -51,7 +46,7 @@
   </head>
   <body>
     <div class="content">
-      <div id="calendar_basic" style="width: 1000px; height: 350px;"></div>
+      <div id="calendar_basic" style="width: 1000px; height: 350px"></div>
     </div>
   </body>
 </html>

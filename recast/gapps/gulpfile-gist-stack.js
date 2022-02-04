@@ -11,17 +11,13 @@ gulp.task('default', ['src'], function (cb) {
 });
 
 gulp.task('clean', function () {
-  del([
-    'src/*'
-  ]);
+  del(['src/*']);
 });
 
 gulp.task('src', ['clean'], function () {
-  gulp.src(['*.html', '*.gs', '*.js', '!gulpfile.js'])
-    .pipe(gulp.dest('src'));
+  gulp.src(['*.html', '*.gs', '*.js', '!gulpfile.js']).pipe(gulp.dest('src'));
 });
 
 gulp.task('init', function () {
-  gulp.src(['src/*.html', 'src/*.gs', 'src/*.js'])
-    .pipe(gulp.dest('.'));
+  gulp.src(['src/*.html', 'src/*.gs', 'src/*.js']).pipe(gulp.dest('.'));
 });

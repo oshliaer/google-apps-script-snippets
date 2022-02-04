@@ -8,15 +8,8 @@
  */
 function run() {
   var fileId = '1MzgDapq7td4DOG8rV6GJj81ib8udOFCrcOiG4d-pbSM';
-  var namer = function(title) {
-    return (
-      title +
-      Utilities.formatDate(
-        new Date(),
-        Session.getScriptTimeZone(),
-        ' yyyy-MM-dd HH:mm'
-      )
-    );
+  var namer = function (title) {
+    return title + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), ' yyyy-MM-dd HH:mm');
   };
   backupFileById_(fileId, namer);
 }
@@ -30,7 +23,7 @@ function run() {
 function backupFileById_(id, namer) {
   namer =
     namer ||
-    function(titile) {
+    function (titile) {
       return titile;
     };
   var file = DriveApp.getFileById(id);

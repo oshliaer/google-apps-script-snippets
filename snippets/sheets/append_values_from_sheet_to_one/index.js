@@ -13,16 +13,9 @@
  */
 function appendValues_(from, to) {
   const fromRange = from.getRange('A2:C');
-  const fromValues = fromRange
-    .getValues()
-    .filter(row => row.some(cell => cell !== ''));
+  const fromValues = fromRange.getValues().filter((row) => row.some((cell) => cell !== ''));
   if (fromValues.length)
-    to.getRange(
-      to.getLastRow() + 1,
-      2,
-      fromValues.length,
-      fromValues[0].length
-    ).setValues(fromValues);
+    to.getRange(to.getLastRow() + 1, 2, fromValues.length, fromValues[0].length).setValues(fromValues);
   fromRange.clearContent();
   return fromValues.length;
 }
@@ -31,10 +24,7 @@ function appendValues_(from, to) {
  * Creates an ueser menu for the snippet
  */
 function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu('My tools')
-    .addItem('Copy data', 'userActionCopyData')
-    .addToUi();
+  SpreadsheetApp.getUi().createMenu('My tools').addItem('Copy data', 'userActionCopyData').addToUi();
 }
 /**
  * User action

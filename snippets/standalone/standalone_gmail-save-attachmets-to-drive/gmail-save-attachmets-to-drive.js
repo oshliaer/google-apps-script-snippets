@@ -28,14 +28,10 @@ function run() {
    * @param {GoogleAppsScript.Gmail.GmailThread} thread
    * @param {AttacmentsOnDriveMessage[]} messages
    */
-  var cbThread = function(thread) {
+  var cbThread = function (thread) {
     thread.markRead().moveToArchive();
   };
-  saveAttachmentsToDrive_(
-    'subject:Счёт от ПАО «Ростелеком» label:unread in:inbox ',
-    folder,
-    cbThread
-  );
+  saveAttachmentsToDrive_('subject:Счёт от ПАО «Ростелеком» label:unread in:inbox ', folder, cbThread);
 }
 
 /**
@@ -47,17 +43,17 @@ function run() {
  */
 function saveAttachmentsToDrive_(searchQuery, folder, cbThread) {
   folder = folder || DriveApp.getRootFolder();
-  return GmailApp.search(searchQuery).map(function(thread) {
+  return GmailApp.search(searchQuery).map(function (thread) {
     var res = {
       thread: thread,
-      messages: thread.getMessages().map(function(message) {
+      messages: thread.getMessages().map(function (message) {
         var attachments = message.getAttachments();
-        var files = attachments.map(function(attachment) {
+        var files = attachments.map(function (attachment) {
           var file = folder.createFile(attachment.copyBlob());
           return file;
         });
         return { message: message, attachments: attachments, files: files };
-      })
+      }),
     };
     cbThread && cbThread(thread);
     return res;

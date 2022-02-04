@@ -13,7 +13,7 @@ var knownOptions = {
 };
 */
 
-var options = minimist(process.argv.slice(2)/*, knownOptions*/);
+var options = minimist(process.argv.slice(2) /*, knownOptions*/);
 var vp = require('vinyl-paths');
 
 gulp.task('default', ['src'], function (cb) {
@@ -25,33 +25,25 @@ gulp.task('default', ['src'], function (cb) {
 });
 
 gulp.task('clean', function () {
-  del([
-    'src/*'
-  ]);
+  del(['src/*']);
 });
 
 gulp.task('src', ['clean'], function () {
-  gulp.src('app/*')
-    .pipe(gulp.dest('src'));
+  gulp.src('app/*').pipe(gulp.dest('src'));
 });
 
 gulp.task('init', ['gappsinit'], function () {
-  gulp.src('src/*')
-    .pipe(gulp.dest('app'));
+  gulp.src('src/*').pipe(gulp.dest('app'));
 });
 
 gulp.task('cleanbup', function () {
-  del([
-    '.backups'
-  ]);
+  del(['.backups']);
 });
 
 gulp.task('gs', function (cb) {
   var path = `.backups/${new Date().getTime()}`;
 
-  return gulp.src(['src/**/*', './gapps.config.json'], { base: '.' })
-    .pipe(vp(del))
-    .pipe(gulp.dest(path));
+  return gulp.src(['src/**/*', './gapps.config.json'], { base: '.' }).pipe(vp(del)).pipe(gulp.dest(path));
 });
 
 gulp.task('gappsinit', ['gs'], function (cb) {
@@ -59,5 +51,5 @@ gulp.task('gappsinit', ['gs'], function (cb) {
     console.log(stdout);
     console.log(stderr);
     cb(err);
-  })
+  });
 });

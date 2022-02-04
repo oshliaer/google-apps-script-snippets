@@ -12,18 +12,9 @@ const SETTINGS = Object.freeze({
 function onOpen() {
   SpreadsheetApp.getUi()
     .createMenu('Copy format')
-    .addItem(
-      `Copy format from ${SETTINGS.template1Name} to the active sheet`,
-      'userActionFormatActiveSheetByTemplate'
-    )
-    .addItem(
-      'Copy format from the active sheet to all sheets',
-      'userActionFormatAllSheetsByActive'
-    )
-    .addItem(
-      `Sync format for the list ${SETTINGS.syncListSheet.join(', ')}`,
-      'userActionSyncFormatForList'
-    )
+    .addItem(`Copy format from ${SETTINGS.template1Name} to the active sheet`, 'userActionFormatActiveSheetByTemplate')
+    .addItem('Copy format from the active sheet to all sheets', 'userActionFormatAllSheetsByActive')
+    .addItem(`Sync format for the list ${SETTINGS.syncListSheet.join(', ')}`, 'userActionSyncFormatForList')
     .addToUi();
 }
 
@@ -45,9 +36,7 @@ function userActionFormatAllSheetsByActive() {
   const template = SpreadsheetApp.getActiveSheet();
   const book = SpreadsheetApp.getActive()
     .getSheets()
-    .forEach(sheet =>
-      sheet !== template ? formatSheetByTemplate_(sheet, template) : undefined
-    );
+    .forEach((sheet) => (sheet !== template ? formatSheetByTemplate_(sheet, template) : undefined));
 }
 
 /**
@@ -59,11 +48,9 @@ function userActionSyncFormatForList() {
   const template = SETTINGS.syncListSheet.includes(templateName)
     ? activeSheet
     : SpreadsheetApp.getActive().getSheetByName(SETTINGS.syncListSheet[0]);
-  SETTINGS.syncListSheet.forEach(sheetName => {
+  SETTINGS.syncListSheet.forEach((sheetName) => {
     const sheet = SpreadsheetApp.getActive().getSheetByName(sheetName);
-    return sheet !== template
-      ? formatSheetByTemplate_(sheet, template)
-      : undefined;
+    return sheet !== template ? formatSheetByTemplate_(sheet, template) : undefined;
   });
 }
 
@@ -79,32 +66,15 @@ function formatSheetByTemplate_(sheet, template) {
   const activeSheetMaxRows = sheet.getMaxRows();
   const activeSheetMaxCols = sheet.getMaxColumns();
 
-  const templateRange = template.getRange(
-    1,
-    1,
-    templateSheetMaxRows,
-    templateSheetMaxCols
-  );
+  const templateRange = template.getRange(1, 1, templateSheetMaxRows, templateSheetMaxCols);
   const sheetRange = sheet.getRange(
     1,
     1,
-    activeSheetMaxRows > templateSheetMaxRows
-      ? templateSheetMaxRows
-      : activeSheetMaxRows,
-    activeSheetMaxCols > templateSheetMaxCols
-      ? templateSheetMaxCols
-      : activeSheetMaxCols
+    activeSheetMaxRows > templateSheetMaxRows ? templateSheetMaxRows : activeSheetMaxRows,
+    activeSheetMaxCols > templateSheetMaxCols ? templateSheetMaxCols : activeSheetMaxCols
   );
 
-  templateRange.copyTo(
-    sheetRange,
-    SpreadsheetApp.CopyPasteType.PASTE_FORMAT,
-    false
-  );
-  templateRange.copyTo(
-    sheetRange,
-    SpreadsheetApp.CopyPasteType.PASTE_COLUMN_WIDTHS,
-    false
-  );
+  templateRange.copyTo(sheetRange, SpreadsheetApp.CopyPasteType.PASTE_FORMAT, false);
+  templateRange.copyTo(sheetRange, SpreadsheetApp.CopyPasteType.PASTE_COLUMN_WIDTHS, false);
   return sheetRange;
 }

@@ -13,9 +13,7 @@ class GCP {
    */
   serialize(obj) {
     return Object.keys(obj)
-      .map(
-        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key])
-      )
+      .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]))
       .join('&');
   }
 
@@ -37,16 +35,9 @@ class GCP {
       },
       urlFetchRequestOptions
     );
-    const __params__ = Object.assign(
-      {},
-      params !== null && typeof params === 'object' ? params : {}
-    );
-    const __url__ = `https://www.google.com/cloudprint/${method}?${this.serialize(
-      __params__
-    )}`;
-    return JSON.parse(
-      UrlFetchApp.fetch(__url__, __urlFetchRequestOptions__).getContentText()
-    );
+    const __params__ = Object.assign({}, params !== null && typeof params === 'object' ? params : {});
+    const __url__ = `https://www.google.com/cloudprint/${method}?${this.serialize(__params__)}`;
+    return JSON.parse(UrlFetchApp.fetch(__url__, __urlFetchRequestOptions__).getContentText());
   }
   /**
    * https://developers.google.com/cloud-print/docs/appInterfaces#search

@@ -9,10 +9,7 @@ function onEdit(e) {
   if (e && e.range && e.range.getColumn() > 1 && e.range.getRow() > 1) {
     const sheet = e.range.getSheet();
     if (sheet.getName() !== sheetName) {
-      const writeVal =
-        e.value && sheet.getRange(e.range.getRow(), 1).getValue() == true
-          ? new Date()
-          : '';
+      const writeVal = e.value && sheet.getRange(e.range.getRow(), 1).getValue() == true ? new Date() : '';
       sheet.getRange(e.range.rowStart, colToStamp).setValue(writeVal);
     }
   }

@@ -25,6 +25,6 @@ function forwardWithoutAttachments_(query) {
       console.log(c.getFirstMessageSubject());
       return p;
     }, [])
-    .find(msg => msg.getAttachments().length);
+    .find((msg) => msg.getAttachments().length);
   return message.forward('alexanderivanovdev@gmail.com', { attachments: [] });
 }

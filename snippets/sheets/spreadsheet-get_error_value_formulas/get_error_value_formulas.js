@@ -16,20 +16,14 @@ function GETERRORMESSAGES(a1Nota) {
     );
     var res = UrlFetchApp.fetch(url, {
       headers: {
-        Authorization:
-          'Bearer ' +
-          PropertiesService.getScriptProperties().getProperty('CODE'),
+        Authorization: 'Bearer ' + PropertiesService.getScriptProperties().getProperty('CODE'),
       },
     });
-    return JSON.parse(res.getContentText()).sheets[0].data[0].rowData.map(
-      function(e) {
-        return e.values.map(function(f) {
-          return f.effectiveValue.errorValue
-            ? f.effectiveValue.errorValue.message
-            : null;
-        });
-      }
-    );
+    return JSON.parse(res.getContentText()).sheets[0].data[0].rowData.map(function (e) {
+      return e.values.map(function (f) {
+        return f.effectiveValue.errorValue ? f.effectiveValue.errorValue.message : null;
+      });
+    });
   } catch (error) {
     return error.message;
   }
@@ -39,8 +33,5 @@ function GETERRORMESSAGES(a1Nota) {
  * Run once
  */
 function saveMyOAuthToken() {
-  PropertiesService.getScriptProperties().setProperty(
-    'CODE',
-    ScriptApp.getOAuthToken()
-  );
+  PropertiesService.getScriptProperties().setProperty('CODE', ScriptApp.getOAuthToken());
 }

@@ -2,10 +2,7 @@
  *
  */
 function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu('Custom menu')
-    .addItem('Copy to logs', 'userActionsCopyToLogs')
-    .addToUi();
+  SpreadsheetApp.getUi().createMenu('Custom menu').addItem('Copy to logs', 'userActionsCopyToLogs').addToUi();
 }
 
 /**
@@ -23,7 +20,7 @@ function userActionsCopyToLogs() {
 
   var fromValues = from.getDataRange().getValues();
 
-  var fromHeaders = fromValues[0].map(function(h) {
+  var fromHeaders = fromValues[0].map(function (h) {
     return headers.indexOf(h);
   });
 
@@ -31,18 +28,16 @@ function userActionsCopyToLogs() {
   var rowStart = activeRange.getRow();
   var rowEnd = activeRange.getLastRow();
   var fromData = fromValues
-    .filter(function(row, i) {
+    .filter(function (row, i) {
       return i >= rowStart - 1 && i <= rowEnd - 1;
     })
-    .map(function(row) {
-      return row.filter(function(_, j) {
+    .map(function (row) {
+      return row.filter(function (_, j) {
         return fromHeaders[j] > -1;
       });
     });
 
-  var to =
-    SpreadsheetApp.getActive().getSheetByName('Logs') ||
-    SpreadsheetApp.getActive().insertSheet('Logs');
+  var to = SpreadsheetApp.getActive().getSheetByName('Logs') || SpreadsheetApp.getActive().insertSheet('Logs');
 
   to.getRange(to.getLastRow() + 1, 1, fromData.length, fromData[0].length)
     .setValues(fromData)

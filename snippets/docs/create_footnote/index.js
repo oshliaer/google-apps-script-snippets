@@ -19,11 +19,7 @@ function run() {
  * @param {string} id
  * @returns Result of batch updates or an issue reply
  */
-function createFootnoteWithText_(
-  text,
-  bodyIndex,
-  id = DocumentApp.getActiveDocument().getId()
-) {
+function createFootnoteWithText_(text, bodyIndex, id = DocumentApp.getActiveDocument().getId()) {
   const createFootnoteReplies = createFootnote_(bodyIndex, id);
   if (createFootnoteReplies && createFootnoteReplies.replies.length) {
     const reply = createFootnoteReplies.replies[0];
@@ -36,10 +32,7 @@ function createFootnoteWithText_(
  * Insert an empty footnote to body index
  * @param {number} bodyIndex
  */
-function createFootnote_(
-  bodyIndex,
-  id = DocumentApp.getActiveDocument().getId()
-) {
+function createFootnote_(bodyIndex, id = DocumentApp.getActiveDocument().getId()) {
   return Docs.Documents.batchUpdate(
     {
       requests: {
@@ -59,11 +52,7 @@ function createFootnote_(
  * @param {string} text
  * @param {string} segmentId
  */
-function appendTextTo_(
-  text,
-  segmentId = undefined,
-  id = DocumentApp.getActiveDocument().getId()
-) {
+function appendTextTo_(text, segmentId = undefined, id = DocumentApp.getActiveDocument().getId()) {
   return Docs.Documents.batchUpdate(
     {
       requests: {

@@ -3,9 +3,7 @@ function getScriptURL() {
 }
 
 function setWebhook() {
-  var uf = UrlFetchApp.fetch(
-    api('setWebhook') + '?url=' + getScriptURL()
-  );
+  var uf = UrlFetchApp.fetch(api('setWebhook') + '?url=' + getScriptURL());
 }
 
 function disableWebhook() {
@@ -13,7 +11,5 @@ function disableWebhook() {
 }
 
 function getApiKey() {
-  return PropertiesService.getScriptProperties().getProperty(
-    'apikey'
-  );
+  return PropertiesService.getScriptProperties().getProperty('apikey');
 }

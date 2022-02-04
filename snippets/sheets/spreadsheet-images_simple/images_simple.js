@@ -4,7 +4,7 @@
 function run() {
   var sheet = SpreadsheetApp.getActiveSheet();
   var images = sheet.getImages();
-  images.forEach(function(image) {
+  images.forEach(function (image) {
     Logger.log(image);
   });
 }
@@ -19,8 +19,8 @@ function run2() {
 }
 
 /**
- * 
+ *
  */
-function run3(){
+function run3() {
   // Sheets.Spreadsheets.
 }

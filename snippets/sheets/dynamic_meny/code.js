@@ -27,7 +27,7 @@ function onOpen() {
 
   var menu = ui.createMenu('Test');
 
-  MENU.forEach(function(item, i) {
+  MENU.forEach(function (item, i) {
     menu.addItem(item.caption, item.functionName + i);
   });
 
@@ -44,14 +44,12 @@ function onOpen() {
 function itemMenu(e) {
   var caption = e.item.caption;
   var order = e.order;
-  Browser.msgBox(
-    Utilities.formatString('Был нажат %sй пункт меню: %s', order + 1, caption)
-  );
+  Browser.msgBox(Utilities.formatString('Был нажат %sй пункт меню: %s', order + 1, caption));
 }
 
-(function(self) {
-  MENU.forEach(function(item, i) {
-    self[item.functionName + i] = function() {
+(function (self) {
+  MENU.forEach(function (item, i) {
+    self[item.functionName + i] = function () {
       return self[item.functionName]({ item: item, order: i });
     };
   });

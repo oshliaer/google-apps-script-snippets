@@ -22,8 +22,7 @@ function userActionSortBookByListNames() {
     return {
       items: self,
       getId: (prop) => {
-        if (!Object.prototype.hasOwnProperty.call(self, prop))
-          self[prop] = ++next;
+        if (!Object.prototype.hasOwnProperty.call(self, prop)) self[prop] = ++next;
         return self[prop];
       },
     };

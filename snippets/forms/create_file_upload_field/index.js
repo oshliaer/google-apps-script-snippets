@@ -12,14 +12,11 @@ function run() {
   // Create a copy of the Form and fill it with other items
 
   // Copy
-  const newForm = FormApp.openById(
-    DriveApp.getFileById(form.getId()).makeCopy().getId()
-  );
+  const newForm = FormApp.openById(DriveApp.getFileById(form.getId()).makeCopy().getId());
 
   // Delete all items except one
   newForm.getItems().forEach((item) => {
-    if (!fileUploadItems.some((entry) => entry.index === item.getIndex()))
-      newForm.deleteItem(item);
+    if (!fileUploadItems.some((entry) => entry.index === item.getIndex())) newForm.deleteItem(item);
   });
 
   // Add a TEXT item

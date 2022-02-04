@@ -79,7 +79,7 @@ function extractText_(rules, content) {
   // Текущий контент
   let currentContent = content;
   // Каждое правило возвращает результат
-  return rules.map(rule => {
+  return rules.map((rule) => {
     // Инициализация результата по умолчанию
     /** @type {ExtractItem} */
     const res = { data: [] };
@@ -92,10 +92,7 @@ function extractText_(rules, content) {
       // Правило содержит подстановку вывода?
       if (rule.placeholder)
         // Дополнительный форматированный результат
-        res.output = rule.placeholder.replace(
-          /\$(\d+)/g,
-          (_, i) => res.data[i]
-        );
+        res.output = rule.placeholder.replace(/\$(\d+)/g, (_, i) => res.data[i]);
       // Обрежем часть контента, в которой уже был произведен поиск
       currentContent = currentContent.slice(regExpExecArray.index);
     }
@@ -108,16 +105,12 @@ function extractText_(rules, content) {
  * Выводит в консоль контент веб-страницы
  */
 function example() {
-  const contentText = UrlFetchApp.fetch(
-    'https://t.me/googleappsscriptrc'
-  ).getContentText();
+  const contentText = UrlFetchApp.fetch('https://t.me/googleappsscriptrc').getContentText();
   const content = contentText
     .replace(/[\r\n]/g, '')
     .replace(/\s+/g, ' ')
     .replace(/\s*([><])\s*/g, '$1');
-  const regExpExecArray = /<div class="tgme_page_title" dir="auto">(.*?)</.exec(
-    content
-  );
+  const regExpExecArray = /<div class="tgme_page_title" dir="auto">(.*?)</.exec(content);
   if (regExpExecArray) console.log(regExpExecArray[1]);
   else console.log('Заголовок не найден');
 }

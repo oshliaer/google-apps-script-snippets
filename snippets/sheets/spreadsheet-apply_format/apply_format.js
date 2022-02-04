@@ -25,7 +25,7 @@ function runFormatActiveSheet() {
 function runFormatActiveSpreadsheet() {
   SpreadsheetApp.getActive()
     .getSheets()
-    .forEach(function(sheet) {
+    .forEach(function (sheet) {
       applyFormat_(sheet.getDataRange());
     });
 }

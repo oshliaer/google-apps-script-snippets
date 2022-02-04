@@ -38,8 +38,7 @@ function copyingAccessRightsBetweenTwoEntities_(fromId, toId) {
 
   const toDict = {};
   const requestsDeleteProtectedRanges = Sheets.Spreadsheets.get(toId, {
-    fields:
-      'sheets(properties.sheetId,properties.title,protectedRanges.protectedRangeId)',
+    fields: 'sheets(properties.sheetId,properties.title,protectedRanges.protectedRangeId)',
   }).sheets.reduce((p, sheet) => {
     toDict[sheet.properties.title] = sheet.properties.sheetId;
     const protectedRangeIds = sheet.protectedRanges
@@ -67,17 +66,14 @@ function copyingAccessRightsBetweenTwoEntities_(fromId, toId) {
       toId
     );
 
-  const requestsAddProtectedRanges = fromProtectedRanges.reduce(
-    (p, protectedRange) => {
-      if (protectedRange.range && toDict[protectedRange.sheetTitle]) {
-        protectedRange.range.sheetId = toDict[protectedRange.sheetTitle];
-        delete protectedRange.sheetTitle;
-        p.push({ addProtectedRange: { protectedRange } });
-      }
-      return p;
-    },
-    []
-  );
+  const requestsAddProtectedRanges = fromProtectedRanges.reduce((p, protectedRange) => {
+    if (protectedRange.range && toDict[protectedRange.sheetTitle]) {
+      protectedRange.range.sheetId = toDict[protectedRange.sheetTitle];
+      delete protectedRange.sheetTitle;
+      p.push({ addProtectedRange: { protectedRange } });
+    }
+    return p;
+  }, []);
 
   if (requestsAddProtectedRanges.length)
     Sheets.Spreadsheets.batchUpdate(

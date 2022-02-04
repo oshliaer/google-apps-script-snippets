@@ -1,6 +1,4 @@
 {
   "type": "container-bound-sheet",
-  "src": [
-    "./extra/hslToHex.js"
-  ]
+  "src": ["./extra/hslToHex.js"]
 }

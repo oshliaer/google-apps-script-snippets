@@ -10,12 +10,10 @@
     <a href="#" id="btnShowModalDialog">Show the modal dialog</a>
     <script>
       document.addEventListener('DOMContentLoaded', (e) => {
-        document
-          .getElementById('btnShowModalDialog')
-          .addEventListener('click', (e) => {
-            e.preventDefault();
-            google.script.run.showModalDialog();
-          });
+        document.getElementById('btnShowModalDialog').addEventListener('click', (e) => {
+          e.preventDefault();
+          google.script.run.showModalDialog();
+        });
       });
     </script>
   </body>

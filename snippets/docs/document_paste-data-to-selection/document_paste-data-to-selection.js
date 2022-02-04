@@ -14,13 +14,11 @@ function pasteTextToSelection_(text) {
   var selection = doc.getSelection();
   if (selection) {
     var rEls = selection.getRangeElements();
-    rEls.forEach(function(rEl) {
+    rEls.forEach(function (rEl) {
       var element = rEl.getElement();
       switch (element.getType()) {
         case DocumentApp.ElementType.TEXT:
-          element
-            .asText()
-            .deleteText(rEl.getStartOffset(), rEl.getEndOffsetInclusive());
+          element.asText().deleteText(rEl.getStartOffset(), rEl.getEndOffsetInclusive());
           break;
         case DocumentApp.ElementType.PARAGRAPH:
           element.removeFromParent();

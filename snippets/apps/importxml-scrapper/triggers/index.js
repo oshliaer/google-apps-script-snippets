@@ -35,10 +35,7 @@ function userActionAssignTimebasedTrigger() {
   const bookId = book.getId();
   PropertiesService.getScriptProperties().setProperties({ bookId });
   clearTriggers_();
-  ScriptApp.newTrigger('timebasedTrigger_')
-    .timeBased()
-    .everyMinutes(1)
-    .create();
+  ScriptApp.newTrigger('timebasedTrigger_').timeBased().everyMinutes(1).create();
   book.toast('OK');
 }
 
@@ -70,10 +67,7 @@ function timebasedTrigger_() {
  */
 function clearTriggers_() {
   ScriptApp.getProjectTriggers().forEach((trigger) => {
-    if (
-      trigger.getEventType() === ScriptApp.EventType.CLOCK &&
-      trigger.getHandlerFunction() === 'timebasedTrigger_'
-    )
+    if (trigger.getEventType() === ScriptApp.EventType.CLOCK && trigger.getHandlerFunction() === 'timebasedTrigger_')
       ScriptApp.deleteTrigger(trigger);
   });
 }

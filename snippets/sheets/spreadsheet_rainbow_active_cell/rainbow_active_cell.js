@@ -15,9 +15,7 @@ function rainbowActiveCell() {
   richTextBuilder.setText(text);
   for (var i = 0; i < text.length; i++) {
     var textStyleBuilder = SpreadsheetApp.newTextStyle();
-    textStyleBuilder.setForegroundColor(
-      hslToHex(((360 * i) / text.length) | 0, 100, 50)
-    );
+    textStyleBuilder.setForegroundColor(hslToHex(((360 * i) / text.length) | 0, 100, 50));
     var textStyle = textStyleBuilder.build();
     richTextBuilder.setTextStyle(i, i + 1, textStyle);
   }

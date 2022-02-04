@@ -103,9 +103,7 @@ class BlobCache extends ChunkyCache {
     let name = blob.getName();
     if (name === null) name = this.defaultName;
     const contentType = blob.getContentType();
-    const prefix = [name, this.splitter, contentType, this.splitter]
-      .join('')
-      .padEnd(this.prefixSize, ' ');
+    const prefix = [name, this.splitter, contentType, this.splitter].join('').padEnd(this.prefixSize, ' ');
     const data = prefix + Utilities.base64Encode(blob.getBytes());
     this.put(key, data, expirationInSeconds);
   }

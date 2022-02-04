@@ -17,6 +17,5 @@ function userActionRun() {
  * @return {Array.<Array.<object>>}
  */
 function getFilesListFromFolder_(id) {
-  return Drive.Files.list({ q: Utilities.formatString('"%s" in parents', id) })
-    .items;
+  return Drive.Files.list({ q: Utilities.formatString('"%s" in parents', id) }).items;
 }

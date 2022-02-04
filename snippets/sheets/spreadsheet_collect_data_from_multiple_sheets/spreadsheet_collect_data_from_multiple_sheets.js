@@ -22,30 +22,22 @@ function example2() {
   var dest = activeSpreadsheet.getSheetByName(destName);
   var headers = ['Source', 'Column1', 'Column2'];
   var columnsCount = headers.length;
-  var reducer = function(accumulator, sheet) {
+  var reducer = function (accumulator, sheet) {
     var sheetName = sheet.getName();
     var lastRow = sheet.getLastRow();
     if (sheetName !== destName && lastRow > 1) {
       var values = sheet
         .getRange(2, 1, lastRow - 1, columnsCount - 1)
         .getValues()
-        .map(function(row) {
+        .map(function (row) {
           return [].concat(sheetName, row);
         });
       accumulator = accumulator.concat(values);
     }
     return accumulator;
   };
-  var data = collectDataFromMultipleSheets_(
-    activeSpreadsheet.getSheets(),
-    reducer,
-    headers
-  );
-  if (data.length)
-    dest
-      .clearContents()
-      .getRange(1, 1, data.length, data[0].length)
-      .setValues(data);
+  var data = collectDataFromMultipleSheets_(activeSpreadsheet.getSheets(), reducer, headers);
+  if (data.length) dest.clearContents().getRange(1, 1, data.length, data[0].length).setValues(data);
 }
 
 /**
@@ -65,12 +57,10 @@ function collectDataFromMultipleSheets_(sheets, reducer, headers) {
   }
   if (!reducer) {
     var columnsCount = headers.length || sheets[0].getLastColumn() || 1;
-    reducer = function(accumulator, sheet) {
+    reducer = function (accumulator, sheet) {
       var lastRow = sheet.getLastRow();
       if (lastRow > 1) {
-        var values = sheet
-          .getRange(2, 1, lastRow - 1, columnsCount)
-          .getValues();
+        var values = sheet.getRange(2, 1, lastRow - 1, columnsCount).getValues();
         accumulator = accumulator.concat(values);
       }
       return accumulator;

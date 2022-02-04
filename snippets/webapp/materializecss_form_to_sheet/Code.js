@@ -26,17 +26,11 @@ function include(filename) {
  * @param {*} submission
  */
 function userClicked(submission) {
-  var url =
-    'https://docs.google.com/spreadsheets/d/19GRd3EarV_SM3Y8MYdpWvQNYZVZgLZih4EO4gX_JSko/edit?usp=sharing';
+  var url = 'https://docs.google.com/spreadsheets/d/19GRd3EarV_SM3Y8MYdpWvQNYZVZgLZih4EO4gX_JSko/edit?usp=sharing';
   var ss = SpreadsheetApp.openByUrl(url);
   Logger.log(submission);
   var ws = ss.getSheetByName('submissions');
   var date = new Date();
 
-  ws.appendRow([
-    date,
-    submission.grade,
-    submission.courseCode,
-    submission.expectations,
-  ]);
+  ws.appendRow([date, submission.grade, submission.courseCode, submission.expectations]);
 }

@@ -38,11 +38,7 @@ function userActionImportFromCSV() {
  * User action. Import the CSV file
  */
 function userActionExportToCSV() {
-  var res = exportToCSV_(
-    CSV_FILE_ID,
-    SpreadsheetApp.getActive().getId(),
-    SpreadsheetApp.getActiveSheet().getSheetId()
-  );
+  var res = exportToCSV_(CSV_FILE_ID, SpreadsheetApp.getActive().getId(), SpreadsheetApp.getActiveSheet().getSheetId());
   Logger.log(res);
 }
 
@@ -56,9 +52,7 @@ function userActionExportToCSV() {
 function importFromCSV_(csvId, spreadsheetId, sheetId) {
   // Get CSV data
 
-  var data = DriveApp.getFileById(csvId)
-    .getBlob()
-    .getDataAsString();
+  var data = DriveApp.getFileById(csvId).getBlob().getDataAsString();
 
   // Clear the Sheet
   var updateCellsRequest = Sheets.newUpdateCellsRequest();
@@ -122,9 +116,6 @@ function batchUpdateSpreadsheet_(request, spreadsheetId) {
     requests: [],
   };
   resource.requests.push(request);
-  var batchUpdateSpreadsheetResponse = Sheets.Spreadsheets.batchUpdate(
-    resource,
-    spreadsheetId
-  );
+  var batchUpdateSpreadsheetResponse = Sheets.Spreadsheets.batchUpdate(resource, spreadsheetId);
   return batchUpdateSpreadsheetResponse;
 }

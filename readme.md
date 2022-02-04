@@ -52,11 +52,7 @@ _example [/issues/3](../../issues/3)_
 function ll_() {
   var args = [];
   for (var i = 0; i < arguments.length; i++) {
-    args.push(
-      typeof arguments[i] === 'object'
-        ? '' + JSON.stringify(arguments[i], null, '  ')
-        : '' + arguments[i]
-    );
+    args.push(typeof arguments[i] === 'object' ? '' + JSON.stringify(arguments[i], null, '  ') : '' + arguments[i]);
   }
   if (!/%s/.test(args[0])) {
     args.unshift(new Array(args.length).join('\n%s'));
@@ -88,8 +84,7 @@ function createSpreadsheetRC(name, rows, columns, folder, add) {
   var spreadsheet = SpreadsheetApp.create.apply(SpreadsheetApp, args);
 
   if (folder) {
-    folder =
-      typeof folder === 'object' ? folder : DriveApp.getFolderById(folder);
+    folder = typeof folder === 'object' ? folder : DriveApp.getFolderById(folder);
     add = !!add;
 
     var child = DriveApp.getFileById(spreadsheet.getId());
@@ -189,14 +184,7 @@ like [appendRow(rowContents)](<https://developers.google.com/apps-script/referen
 // Appends values to sheet
 function appendValues(sheet, values, colOffset) {
   colOffset = colOffset || 1;
-  return sheet
-    .getRange(
-      sheet.getLastRow() + 1,
-      colOffset,
-      values.length,
-      values[0].length
-    )
-    .setValues(values);
+  return sheet.getRange(sheet.getLastRow() + 1, colOffset, values.length, values[0].length).setValues(values);
 }
 ```
 
@@ -237,11 +225,8 @@ function isInGroup_(userEmail, groupEmail, level) {
   try {
     var group = GroupsApp.getGroupByEmail(groupEmail);
     return (
-      [
-        GroupsApp.Role.OWNER,
-        GroupsApp.Role.MANAGER,
-        GroupsApp.Role.MEMBER,
-      ].indexOf(group.getRole(currentUser)) === level
+      [GroupsApp.Role.OWNER, GroupsApp.Role.MANAGER, GroupsApp.Role.MEMBER].indexOf(group.getRole(currentUser)) ===
+      level
     );
   } catch (err) {
     return false;
@@ -259,10 +244,7 @@ _Example [/issue/9](../../issues/9)_
 
 ```js
 function newBlobWithCharset(data, contentType, name, charset) {
-  return Utilities.newBlob('')
-    .setDataFromString(data, charset)
-    .setName(name)
-    .setContentType(contentType);
+  return Utilities.newBlob('').setDataFromString(data, charset).setName(name).setContentType(contentType);
 }
 ```
 
@@ -284,11 +266,7 @@ _Example [/issue/8](../../issues/8)_
 function hash_(str, digestAlgorithm, charset) {
   charset = charset || Utilities.Charset.UTF_8;
   digestAlgorithm = digestAlgorithm || 'MD5';
-  var digest = Utilities.computeDigest(
-    Utilities.DigestAlgorithm[digestAlgorithm],
-    str,
-    charset
-  );
+  var digest = Utilities.computeDigest(Utilities.DigestAlgorithm[digestAlgorithm], str, charset);
   var __ = '';
   for (i = 0; i < digest.length; i++) {
     //var byte = digest[i];

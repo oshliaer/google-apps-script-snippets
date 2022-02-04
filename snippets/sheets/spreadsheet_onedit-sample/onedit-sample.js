@@ -12,13 +12,5 @@ function onEdit(e) {
   e.range
     .getSheet()
     .getParent()
-    .toast(
-      Utilities.formatString(
-        "'%s'!%s",
-        e.range.getSheet().getName(),
-        e.range.getA1Notation()
-      ),
-      '',
-      -1
-    );
+    .toast(Utilities.formatString("'%s'!%s", e.range.getSheet().getName(), e.range.getA1Notation()), '', -1);
 }

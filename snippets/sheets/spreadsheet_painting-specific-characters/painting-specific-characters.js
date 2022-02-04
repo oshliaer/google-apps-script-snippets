@@ -24,8 +24,8 @@ function paintingSpecificCharacters_(range, char, color) {
   textStyleBuilder.setForegroundColor(color);
   var textStyle = textStyleBuilder.build();
   var length = char.length;
-  var richTextValues = range.getRichTextValues().map(function(row) {
-    return row.map(function(richTextValue) {
+  var richTextValues = range.getRichTextValues().map(function (row) {
+    return row.map(function (richTextValue) {
       var value = richTextValue.getText();
       var richTextBuilder = SpreadsheetApp.newRichTextValue();
       richTextBuilder.setText(value);

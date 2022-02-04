@@ -10,11 +10,9 @@
  */
 function onformsubmit(e) {
   const sheet = e.range.getSheet();
-  sheet
-    .getRange('1:1')
-    .copyTo(sheet.getRange(`${e.range.getRow()}:${e.range.getRow()}`), {
-      formatOnly: true,
-    });
+  sheet.getRange('1:1').copyTo(sheet.getRange(`${e.range.getRow()}:${e.range.getRow()}`), {
+    formatOnly: true,
+  });
   const range = sheet.getRange(e.range.getRow(), 4);
   onEdit({
     range: range,
@@ -31,7 +29,7 @@ function onEdit(e) {
     const rowIndex = sheet
       .getDataRange()
       .getValues()
-      .findIndex(row => row[0] === '');
+      .findIndex((row) => row[0] === '');
     const rows = rowIndex === -1 ? sheet.getLastRow() - 1 : rowIndex - 1;
     sheet.getRange(2, 1, rows, sheet.getLastColumn()).sort([
       { column: 4, ascending: true },
@@ -44,17 +42,9 @@ function onEdit(e) {
  *
  */
 function install() {
-  ScriptApp.getProjectTriggers().forEach(trigger => {
-    if (
-      [
-        ScriptApp.EventType.ON_FORM_SUBMIT,
-        ScriptApp.EventType.ON_EDIT,
-      ].includes(trigger.getEventType())
-    )
+  ScriptApp.getProjectTriggers().forEach((trigger) => {
+    if ([ScriptApp.EventType.ON_FORM_SUBMIT, ScriptApp.EventType.ON_EDIT].includes(trigger.getEventType()))
       ScriptApp.deleteTrigger(trigger);
   });
-  ScriptApp.newTrigger('onformsubmit')
-    .forSpreadsheet(SpreadsheetApp.getActive())
-    .onFormSubmit()
-    .create();
+  ScriptApp.newTrigger('onformsubmit').forSpreadsheet(SpreadsheetApp.getActive()).onFormSubmit().create();
 }

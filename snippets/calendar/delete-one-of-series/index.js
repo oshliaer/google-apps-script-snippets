@@ -22,11 +22,6 @@ function deleteEventFromSeries(calendarId, start, end, search) {
   return events.items.length
     ? events.items
         .filter((event) => event.recurringEventId)
-        .map(
-          (event) => (
-            (event.status = 'cancelled'),
-            Calendar.Events.patch(event, calendarId, event.id)
-          )
-        )
+        .map((event) => ((event.status = 'cancelled'), Calendar.Events.patch(event, calendarId, event.id)))
     : [];
 }

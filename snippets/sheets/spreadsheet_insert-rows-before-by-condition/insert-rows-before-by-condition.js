@@ -14,7 +14,7 @@ function runSample1() {
    */
   var cb;
 
-  cb = function(row, i, values) {
+  cb = function (row, i, values) {
     // Returns true if it's not the first row, it contains an asterks
     // and there is no an empty row before
     return values[i - 1] && /\*/.test(row[0]) && values[i - 1].join('') !== '';
@@ -32,14 +32,10 @@ function runSample2() {
    */
   var cb;
 
-  cb = function(row, i, values) {
+  cb = function (row, i, values) {
     // Returns true if it's not the first row, the first cell of a row does not equal one of previous row
     // and there is no an empty row before
-    return (
-      values[i - 1] &&
-      values[i - 1][0] !== row[0] &&
-      values[i - 1].join('') !== ''
-    );
+    return values[i - 1] && values[i - 1][0] !== row[0] && values[i - 1].join('') !== '';
   };
   var sheet = SpreadsheetApp.getActiveSheet();
   insertRowBeforeByCondition_(sheet, cb);
@@ -55,8 +51,7 @@ function insertRowBeforeByCondition_(sheet, condition) {
   var dataRange = sheet.getDataRange();
   var values = dataRange.getValues();
   var i = values.length;
-  while (i-- > 0)
-    if (condition(values[i], i, values)) sheet.insertRowBefore(i + 1);
+  while (i-- > 0) if (condition(values[i], i, values)) sheet.insertRowBefore(i + 1);
   return sheet;
 }
 

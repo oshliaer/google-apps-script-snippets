@@ -9,9 +9,7 @@ function getStreetView() {}
  * @param {*} row
  */
 function getAddress(sheet, row) {
-  var longLat = sheet
-    .getRange(Utilities.formatString('%s:%s', row, row))
-    .getValues()[0];
+  var longLat = sheet.getRange(Utilities.formatString('%s:%s', row, row)).getValues()[0];
   var response = Maps.newGeocoder().reverseGeocode(longLat[0], longLat[1]);
   var res = 'No Available';
   if (response.status === 'OK') {
@@ -21,7 +19,7 @@ function getAddress(sheet, row) {
 }
 
 /**
- * 
+ *
  */
 function userActionGetAddress() {
   var sheet = SpreadsheetApp.getActiveSheet();
@@ -30,11 +28,8 @@ function userActionGetAddress() {
 }
 
 /**
- * 
+ *
  */
 function onOpen() {
-  SpreadsheetApp.getUi()
-    .createMenu('Process')
-    .addItem('getAddress', 'userActionGetAddress')
-    .addToUi();
+  SpreadsheetApp.getUi().createMenu('Process').addItem('getAddress', 'userActionGetAddress').addToUi();
 }

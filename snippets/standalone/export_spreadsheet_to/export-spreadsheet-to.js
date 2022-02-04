@@ -8,12 +8,7 @@
  *
  */
 function run() {
-  Logger.log(
-    exportSpreadsheetToFile_(
-      '1TpHUfTvA7xBi4TLnWaplGasDumauA3YyMgXjXeQ2cyo',
-      'tsv'
-    )
-  );
+  Logger.log(exportSpreadsheetToFile_('1TpHUfTvA7xBi4TLnWaplGasDumauA3YyMgXjXeQ2cyo', 'tsv'));
 }
 
 /**
@@ -22,16 +17,14 @@ function run() {
 function runSheet() {
   const spec = ['COUNTIF']; // List of sheets for export
 
-  const spreadsheet = SpreadsheetApp.openById(
-    '1TpHUfTvA7xBi4TLnWaplGasDumauA3YyMgXjXeQ2cyo'
-  ).copy('tmp');
+  const spreadsheet = SpreadsheetApp.openById('1TpHUfTvA7xBi4TLnWaplGasDumauA3YyMgXjXeQ2cyo').copy('tmp');
 
-  spec.forEach(sheetName => {
+  spec.forEach((sheetName) => {
     const dr = spreadsheet.getSheetByName(sheetName).getDataRange();
     dr.setValues(dr.getValues());
   });
 
-  spreadsheet.getSheets().forEach(sheet => {
+  spreadsheet.getSheets().forEach((sheet) => {
     if (spec.indexOf(sheet.getName()) < 0) spreadsheet.deleteSheet(sheet);
   });
 
@@ -76,12 +69,10 @@ function exportSpreadsheetToBlob_(spreadsheetId, type) {
   return blob;
 }
 
-(function(scope) {
+(function (scope) {
   const TYPES = {
-    'application/x-vnd.oasis.opendocument.spreadsheet':
-      'application/x-vnd.oasis.opendocument.spreadsheet',
-    'application/vnd.oasis.opendocument.spreadsheet':
-      'application/vnd.oasis.opendocument.spreadsheet',
+    'application/x-vnd.oasis.opendocument.spreadsheet': 'application/x-vnd.oasis.opendocument.spreadsheet',
+    'application/vnd.oasis.opendocument.spreadsheet': 'application/vnd.oasis.opendocument.spreadsheet',
     ods: 'application/x-vnd.oasis.opendocument.spreadsheet',
     'text/tab-separated-values': 'text/tab-separated-values',
     tsv: 'text/tab-separated-values',
