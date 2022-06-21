@@ -30,7 +30,7 @@
     "eslint-plugin-googleappsscript": "^1.0.3",
     "eslint-plugin-prettier": "^4.0.0",
     "forked-clasp": "^2.11.2",
-    "got": "^12.0.0",
+    "got": "^12.1.0",
     "gulp": "^4.0.2",
     "gulp-file-include": "^2.3.0",
     "merge-stream": "^2.0.0",
