@@ -6,9 +6,15 @@ tags: ['SpreadsheetApp']
 categories: ['snippets']
 ---
 
-## Open an dialog from the sidebar
+## Join of RichTextValues
 
 {{< toc >}}
+
+Sometimes you need to concatenate two or more `RichTextValue` objects consecutively into one and preserving the formatting.
+
+The following class solves this problem.
+
+![Join of RichTextValues](./screenshot.png)
 
 - {{< externalLink >}}
 - {{< commentLink >}}
@@ -16,7 +22,7 @@ categories: ['snippets']
 
 ### The main code
 
-{{< codeFromFile "app/index.js" >}}
+{{< codeFromFile "index.js" >}}
 
 ### Run it
 
