@@ -1,11 +1,12 @@
 {
   "name": "google-apps-script-snippets",
-  "version": "1.1.6-24",
+  "version": "1.1.6-25",
   "description": "Google Apps Script Snippets",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "ds": "gulp develop --path",
-    "dsw": "gulp watch --path"
+    "dsw": "gulp watch --path",
+    "pull": "cp .clasp.json.pull .clasp.json && clasp pull"
   },
   "repository": {
     "type": "git",
